@@ -3,6 +3,8 @@ package main;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import images.Assets;
+
 public class GameLoop implements Runnable {
 	
 	public static int width, height;
@@ -27,6 +29,7 @@ public class GameLoop implements Runnable {
 	}
 	public void init()
 	{
+		Assets.init();
 		window = new Window(title, width, height);
 		gsm = new GameStateManager();
 		keyInput = new KeyInput(gsm);

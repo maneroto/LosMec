@@ -1,9 +1,6 @@
 package world;
 
 import java.awt.Graphics;
-
-import object.Handler;
-import main.GameLoop;
 import tile.Tile;
 
 public class WorldLoader {
@@ -11,11 +8,9 @@ public class WorldLoader {
 	private int height;
 	private int spawnX, spawnY;
 	private int [][] tiles;
-	private Handler handler;
 
-	public WorldLoader(Handler handler, String path)
+	public WorldLoader(String path)
 	{
-		this.handler = handler;
 		loadWorld(path);
 	}
 
@@ -26,23 +21,16 @@ public class WorldLoader {
 
 	public void render(Graphics g)
 	{
-		int xStart = Math.max(0, (int)(handler.getCamera().getXOffset() / Tile.WIDTH));
-		int xEnd = (int) Math.min(width, 
-				((handler.getCamera().getXOffset() + GameLoop.width )/ Tile.WIDTH + 1));
-		int yStart = Math.max(0, (int)(handler.getCamera().getYOffset() / Tile.HEIGHT));
-		int yEnd = (int) Math.min(height, 
-				((handler.getCamera().getYOffset() + GameLoop.height )/ Tile.HEIGHT + 1));
+		int xStart = 0;
+		int xEnd = width;
+		int yStart = 0;
+		int yEnd = height;
 		
 		for (int y = yStart; y < yEnd; y++)
 		{
-			
 			for (int x = xStart; x < xEnd ; x ++)
 			{
-				getTile(x, y).render
-				(g, 
-						(int) (x * Tile.WIDTH - handler.getCamera().getXOffset()), 
-						(int) (y * Tile.HEIGHT - handler.getCamera().getYOffset()));
-				
+				getTile(x, y).render(g, (int) (x * Tile.WIDTH), (int) (y * Tile.HEIGHT));
 			}
 		}
 	}

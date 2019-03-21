@@ -3,15 +3,12 @@ package object;
 import java.awt.Graphics;
 import java.util.ListIterator;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import images.GameCamera;
 import world.WorldLoader;
 
 public class Handler {
 
 	public CopyOnWriteArrayList <GameObject> objeto;
 	private WorldLoader world;
-	private GameCamera gameCamera;
 
 	public Handler()
 	{
@@ -28,19 +25,12 @@ public class Handler {
 		}
 	}
 
-	public void setCamera(GameCamera gameCamera)
-	{
-		this.gameCamera = gameCamera;
-	}
-
 	public void setWorld(WorldLoader world)
 	{
 		this.world = world;
 	}
 
 	public WorldLoader getWorld() { return world; }
-
-	public GameCamera getCamera() { return gameCamera; }
 
 	public void render(Graphics g)
 	{
