@@ -106,12 +106,6 @@ public class GameLoop implements Runnable {
 		}
 	}
 	
-	public static double clamp(double var, double min, double max)
-	{
-		if (var <= min) return var = min;
-		else if (var >= max) return var = max;
-		else return var;
-	}
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
 

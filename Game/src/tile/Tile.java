@@ -1,14 +1,15 @@
 package tile;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
-import object.GameObject;
+import java.awt.image.BufferedImage;
 
-public class Tile extends GameObject{
+import object.GameObject;
+import object.ID;
+
+public abstract class Tile extends GameObject{
 
 	public static Tile[]tiles = new Tile[256];
-	
 	
 	protected int iden;
 	public static final int WIDTH = 64;
@@ -21,15 +22,13 @@ public class Tile extends GameObject{
 		width = WIDTH;
 		height = HEIGHT;
 	}
+
 	public void tick() {
 		
 		
 	}
 
-	public boolean isSolid()
-	{
-		return false;
-	}
+	public abstract boolean isSolid();
 
 	public Rectangle getBounds()
 	{
@@ -47,4 +46,15 @@ public class Tile extends GameObject{
 		this.y = y;
 		g.drawImage(imagen, x, y, width, height, null);
 	}
+
+	public ID getId()
+	{
+		return id;
+	}
+
+	public int getIden()
+	{
+		return iden;
+	}
+
 }

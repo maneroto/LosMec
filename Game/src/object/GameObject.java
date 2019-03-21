@@ -10,6 +10,7 @@ public abstract class GameObject {
 	protected int width;
 	protected int height;
 	protected BufferedImage imagen;
+	protected ID id;
 	protected double velX;
 	protected double velY;
 
@@ -18,10 +19,11 @@ public abstract class GameObject {
 		this.imagen = imagen;
 	}
 
-	public GameObject(double x, double y)
+	public GameObject(double x, double y, ID id)
 	{
 		this.x = x;
 		this.y = y;
+		this.id = id;
 	}
 
 	public boolean placeMeeting(double x, double y, GameObject o)
@@ -64,7 +66,12 @@ public abstract class GameObject {
 	{
 		this.imagen = imagen;
 	}
-	
+
+	public void setID(ID id)
+	{
+		this.id = id;
+	}
+
 	public void setVelX(int velX)
 	{
 		this.velX = velX;
@@ -98,6 +105,11 @@ public abstract class GameObject {
 	public BufferedImage getImagen()
 	{
 		return imagen;
+	}
+
+	public ID getId()
+	{
+		return id;
 	}
 
 	public int getVelX()
