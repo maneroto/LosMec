@@ -3,6 +3,8 @@ package main;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import images.Assets;
+
 public class GameLoop implements Runnable {
 	
 	public static int width, height;
@@ -27,6 +29,7 @@ public class GameLoop implements Runnable {
 	}
 	public void init()
 	{
+		Assets.init();
 		window = new Window(title, width, height);
 		gsm = new GameStateManager();
 		keyInput = new KeyInput(gsm);
@@ -106,12 +109,6 @@ public class GameLoop implements Runnable {
 		}
 	}
 	
-	public static double clamp(double var, double min, double max)
-	{
-		if (var <= min) return var = min;
-		else if (var >= max) return var = max;
-		else return var;
-	}
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
 
