@@ -1,0 +1,11 @@
+HOW TO USE:
+
+These sprites are meant to be layered. Create the animations in your software of choice and add them on top of each other to achieve the best results.
+
+On the bottom layer, place the feet animation: the recommended order of the frames is right1-right2-pause-left1-left2-pause-repeat.
+On the 2nd layer, place the torso/torso animations.
+On the 3rd layer, place the gun of your choice.
+On the 4th layer, place the helmet. Tip: You can make the head rotate where the player is pointing with the mouse, for example.
+
+LICENSE:
+You're allowed to use and modify these sprites as you wish and use them in both commercial and free games or animations, but you may not redistribute them or modified versions of them. You may not claim to have made these sprites. Crediting Salli "Aviala" Loikkanen would be appreciated, but is not required.
