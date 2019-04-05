@@ -1,138 +1,124 @@
 package object;
-
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 public abstract class Character extends GameObject{
-
-	Handler handler;
-	int hp;
-	int damage;
-	long lastAttackTimer;
-	long timerReloadNormal;
-	long attackTimer;
-	int dirAttack;
-	boolean attacking;
-	int scorePoint;
-	double gravity;
-	Rectangle jump;
-	public boolean canJump;
-	public boolean canTakeDamage;
 	
-	public Character(BufferedImage imagen, double x, double y, Handler handler) {
-		super(imagen);
+	protected Handler handler;
+	protected int vida;
+	protected double daño;
+	protected long lastAtackTimer;
+	protected long tiempoRecargaAtaque;
+	protected long tiempoRecargaEspecial;
+	protected long atackTimer;
+	protected int dirAtaque;
+	protected boolean atacando;
+	protected int puntosMuerte;
+	
+	protected Rectangle bounds;
+
+	public Character(double x, double y, ID id, Handler handler) {
+		super(x, y, id);
 		// TODO Auto-generated constructor stub
 		this.handler = handler;
-		this.x = x;
-		this.y = y;
+		this.dirAtaque = -1;
 	}
-	
-	public boolean onFloor()
+
+	public abstract void tick();
+
+	public abstract void render(Graphics g);	
+
+	public abstract void atacar();
+
+	public abstract void moveX();
+
+	public abstract void moveY();
+
+	public abstract void muerto();
+
+	public void herir(double cantidad)
 	{
-		return false;
+		this.vida -= cantidad;
+		muerto();
 	}
-	
-	public void tick()
-	{
-		//What to do?
+
+	public void move() {
+		moveX();
+		moveY();
+		if(velX > 0) dirAtaque = 1;
+		else if (velX < 0) dirAtaque = -1;
 	}
-	
-	public void render (Graphics g)
-	{
-		//what to do?
+
+	protected boolean collisionWithTile(int x, int y){
+		return handler.getWorld().getTile(x, y).isSolid();
 	}
-	
-	public void attack()
-	{
-		//what to do?
-	}
-	
-	public void moveX(boolean up)
-	{
-		if(up)
-		{
-			x -= velX;
-		}
-		else
-		{
-			x += velX;
-		}
-	}
-	
-	public void moveY(boolean left)
-	{
-		if(left)
-		{
-			y -= velY;
-		}
-		else
-		{
-			y += velY;
-		}
-	}
-	
-	public void dead()
-	{
-		//init pv and position;
-		hp = 0;
-	}
-	
-	public void hurt(int amount)
-	{
-		hp -= amount;
-	}
-	
-	public Rectangle getBounds(double xOffset, double yOffset)
-	{
-		//what to do?
-		return null;
-	}
-	
+
 	public String toString()
 	{
-		//waht to do?
-		return "";
+		return 
+				"Estadisticas del personaje tipo: " + id + "\n" +
+				"Posicion X: " + x + "\n" +
+				"Posicion Y: " + y + "\n" +
+				"Ancho: " + width + "\n" +
+				"Alto: " + height + "\n" +
+				"Archivo de imagen: " + imagen + "\n" +
+				"Velocidad en X: " + velX + "\n" +
+				"Velocidad en Y: " + velY + "\n" +
+				"Vida: " + vida + "\n" +
+				"Daño: " + daño + "\n" +
+				"Tiempo de recarga de ataque: " + tiempoRecargaAtaque + "\n" +
+				"Tiempo de recarga de ataque especial: " + tiempoRecargaEspecial
+				;
 	}
-	
-	public void setLife(int life)
+
+	public Rectangle getBounds(double xOffset, double yOffset)
 	{
-		hp = life;
+		return (new Rectangle((int)(x + bounds.x + xOffset), 
+				(int) (y + bounds.y + yOffset), bounds.width, bounds.height));
 	}
-	
-	public void setDamage(int amount)
+
+	public void setVida(int vida)
 	{
-		damage = amount;
+		this.vida = vida;
 	}
-	
-	public void setAttackTimer(int reloadAttackTime)
+
+	public void setDaño(double daño)
 	{
-		attackTimer = reloadAttackTime;
+		this.daño = daño;
 	}
-	
-	public int getLife()
+
+	public void setTiempoRecargaAtaque(int tiempoRecargaAtaque)
 	{
-		return hp;
+		this.tiempoRecargaAtaque = tiempoRecargaAtaque;
 	}
-	
-	public double getDamage()
+
+	public void setTiempoRecargaEspecial(int tiemporecargaEspecial)
 	{
-		return damage;
+		this.tiempoRecargaEspecial = tiemporecargaEspecial;
 	}
-	
-	public long getReloadTime()
+
+	public int getVida()
 	{
-		return timerReloadNormal;
+		return vida;
 	}
-	
-	public void setAttacking(boolean active)
+
+	public double getDaño()
 	{
-		attacking = active;
+		return daño;
 	}
-	
-	public void Immunate(boolean active)
+
+	public long getTiempoRecargaAtaque()
 	{
-		canTakeDamage = active;
+		return tiempoRecargaAtaque;
 	}
-	
+
+	public long getTiempoRecargaEspecial()
+	{
+		return tiempoRecargaEspecial;
+	}
+
+	public void setAtacando(boolean atacando)
+	{
+		this.atacando = atacando;
+	}
 }

@@ -1,6 +1,9 @@
 package world;
 
 import java.awt.Graphics;
+
+import object.Handler;
+import main.GameLoop;
 import tile.Tile;
 
 public class WorldLoader {
@@ -8,9 +11,11 @@ public class WorldLoader {
 	private int height;
 	private int spawnX, spawnY;
 	private int [][] tiles;
+	private Handler handler;
 
-	public WorldLoader(String path)
+	public WorldLoader(Handler handler, String path)
 	{
+		this.handler = handler;
 		loadWorld(path);
 	}
 
@@ -18,37 +23,42 @@ public class WorldLoader {
 	{
 		
 	}
-
 	public void render(Graphics g)
 	{
-		int xStart = 0;
-		int xEnd = width;
-		int yStart = 0;
-		int yEnd = height;
+		int xStart = Math.max(0, (int)(handler.getCamera().getXOffset() / Tile.WIDTH));
+		int xEnd = (int) Math.min(width, 
+				((handler.getCamera().getXOffset() + GameLoop.width )/ Tile.WIDTH + 1));
+		int yStart = Math.max(0, (int)(handler.getCamera().getYOffset() / Tile.HEIGHT));
+		int yEnd = (int) Math.min(height, 
+				((handler.getCamera().getYOffset() + GameLoop.height )/ Tile.HEIGHT + 1));
 		
 		for (int y = yStart; y < yEnd; y++)
 		{
+			
 			for (int x = xStart; x < xEnd ; x ++)
 			{
-				getTile(x, y).render(g, (int) (x * Tile.WIDTH), (int) (y * Tile.HEIGHT));
+				getTile(x, y).render
+				(g, 
+						(int) (x * Tile.WIDTH - handler.getCamera().getXOffset()), 
+						(int) (y * Tile.HEIGHT - handler.getCamera().getYOffset()));
+				
 			}
 		}
 	}
 
 	public Tile getTile(int x, int y)
 	{
-		if (x < 0 || y < 0 || x >= width || y >= height) return null;//return Tile.defaultTile;
+		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.wall1;
 		Tile t = Tile.tiles[tiles[x][y]];
 		if (t == null)
-			return null;
-			// return Tile.defaultTile2;
+			return Tile.wall1;
 		return t;
 	}
 
 	public int getSpawnX() {return spawnX;}
 
 	public int getSpawnY() {return spawnY;}
-
+	
 	private void loadWorld(String path)
 	{
 		String file = Utils.loadFileAsString(path);
