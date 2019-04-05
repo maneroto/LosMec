@@ -11,6 +11,9 @@ public abstract class Tile extends GameObject{
 
 	public static Tile[]tiles = new Tile[256];
 	
+	public static Tile floor1 = new Floor1(1);
+	public static Tile wall1 = new Wall1(2);
+	
 	protected int iden;
 	public static final int WIDTH = 64;
 	public static final int HEIGHT = 64;
@@ -28,7 +31,10 @@ public abstract class Tile extends GameObject{
 		
 	}
 
-	public abstract boolean isSolid();
+	public boolean isSolid()
+	{
+		return false;
+	}
 
 	public Rectangle getBounds()
 	{
