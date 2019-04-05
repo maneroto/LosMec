@@ -16,7 +16,7 @@ public class Assets {
 		p1Pistol = new BufferedImage[4];
 		for (int i = 0; i < 4; i ++)
 		{
-			p1Pistol[i] = p1_Pistol.crop(i*192, 0, 192, 192);
+			p1Pistol[i] = p1_Pistol.crop(i*200, 0, 200, 200);
 		}
 		
 		floor1 = floors.crop(0, 0, 450, 500);

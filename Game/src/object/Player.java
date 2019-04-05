@@ -4,13 +4,15 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import images.Animation;
 import main.GameStateManager;
 import states.State;
 import images.Assets;
 import tile.Tile;
 
 public class Player extends Character{
-
+	
+	private Animation p1Pistol;
 	private GameStateManager gsm;
 	private State s;
 
@@ -34,10 +36,14 @@ public class Player extends Character{
 		
 		tiempoRecargaAtaque = 300;
 		atackTimer = tiempoRecargaAtaque;
+		
+		p1Pistol = new Animation(100, Assets.p1Pistol);
 	}
 
 	@Override
 	public void tick() {
+		
+		p1Pistol.tick();
 
 		move();
 		
@@ -162,11 +168,13 @@ public class Player extends Character{
 		g.drawImage(Assets.depPlayer, (int) (x - s.getCamera().getXOffset())
 				, (int) (y - s.getCamera().getYOffset()), 
 				width, height, null);
+		g.drawImage(getCurrentAnimationFrame(), getX(), getY(), width, height, null);
 	}
-
+	
 	public BufferedImage getCurrentAnimationFrame()
 	{
-		return null;
+		if (velX > 0) return p1Pistol.getCurrentFrame();
+		else return p1Pistol.getCurrentFrame();
 	}
 	
 	@Override
