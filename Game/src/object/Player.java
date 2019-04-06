@@ -12,9 +12,9 @@ import tile.Tile;
 
 public class Player extends Character{
 	
-	private Animation p1Pistol;
 	private GameStateManager gsm;
 	private State s;
+	private Animation p1Pistol;
 
 	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm) {
 		super(x, y,  id, handler);
@@ -37,14 +37,12 @@ public class Player extends Character{
 		tiempoRecargaAtaque = 300;
 		atackTimer = tiempoRecargaAtaque;
 		
-		p1Pistol = new Animation(100, Assets.p1Pistol);
+		p1Pistol = new Animation(10, Assets.p1Pistol);
 	}
 
 	@Override
 	public void tick() {
 		
-		p1Pistol.tick();
-
 		move();
 		
 		colisionItem((int)velX, 0);
@@ -70,6 +68,7 @@ public class Player extends Character{
 			}else{
 				x = tx * Tile.WIDTH - bounds.x - bounds.width - 1;
 			}
+			p1Pistol.setCurrentFrame(3);
 			
 		}else if(velX < 0){//Moving left
 			int tx = (int) (x + velX + bounds.x) / Tile.WIDTH;
@@ -80,7 +79,7 @@ public class Player extends Character{
 			}else{
 				x = tx * Tile.WIDTH + Tile.WIDTH - bounds.x;
 			}
-			
+			p1Pistol.setCurrentFrame(1);
 		}
 	}
 
@@ -94,6 +93,7 @@ public class Player extends Character{
 			}else{
 				y = ty * Tile.HEIGHT + Tile.HEIGHT - bounds.y;
 			}
+			p1Pistol.setCurrentFrame(0);
 			
 		}else if(velY > 0){//Down
 			int ty = (int) (y + velY + bounds.y + bounds.height) / Tile.HEIGHT;
@@ -104,7 +104,7 @@ public class Player extends Character{
 			}else{
 				y = ty * Tile.HEIGHT - bounds.y - bounds.height - 1;
 			}
-			
+			p1Pistol.setCurrentFrame(2);
 		}
 	}
 	/**
@@ -165,16 +165,14 @@ public class Player extends Character{
 	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.depPlayer, (int) (x - s.getCamera().getXOffset())
+		g.drawImage(getCurrentAnimationFrame(), (int) (x - s.getCamera().getXOffset())
 				, (int) (y - s.getCamera().getYOffset()), 
-				width, height, null);
-		g.drawImage(getCurrentAnimationFrame(), getX(), getY(), width, height, null);
+				width, height, null);		
 	}
 	
 	public BufferedImage getCurrentAnimationFrame()
 	{
-		if (velX > 0) return p1Pistol.getCurrentFrame();
-		else return p1Pistol.getCurrentFrame();
+		return p1Pistol.getCurrentFrame();
 	}
 	
 	@Override

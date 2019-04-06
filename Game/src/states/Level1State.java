@@ -3,6 +3,7 @@ package states;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import audios.AudioLoader;
 import main.GameStateManager;
 import object.GameObject;
 import object.ID;
@@ -16,6 +17,7 @@ public class Level1State extends State{
 	private Handler handler;
 	private WorldLoader world;
 	private boolean left, right, up, down;
+	private AudioLoader soundtrack;
 
 	public Level1State(GameStateManager gsm)
 	{
@@ -26,6 +28,10 @@ public class Level1State extends State{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
+		
+		soundtrack = new AudioLoader("res\\\\soundtrack\\\\soundtrack.wav");
+		soundtrack.play();
+		
 		left = false;
 		right = false;
 		up = false;

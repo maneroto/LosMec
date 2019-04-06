@@ -15,7 +15,12 @@ public class Animation {
 		lastTime = System.currentTimeMillis();
 		timer = 0;
 	}
-
+	
+	public void setCurrentFrame(int index)
+	{
+		this.index=index;
+	}
+	
 	public BufferedImage getCurrentFrame()
 	{
 		return frames[index];

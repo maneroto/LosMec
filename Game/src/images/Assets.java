@@ -11,12 +11,12 @@ public class Assets {
 	public static void init()
 	{
 		SpriteSheet floors = new SpriteSheet(ImageLoader.loadImage("/sprites/walls/textures1.jpg"));
-		SpriteSheet p1_Pistol = new SpriteSheet(ImageLoader.loadImage("/sprites/characters/p1/p1-pistol.png"));
+		SpriteSheet p1_Pistol = new SpriteSheet(ImageLoader.loadImage("/sprites/characters/p1/p1-sniper.png"));
 		
 		p1Pistol = new BufferedImage[4];
 		for (int i = 0; i < 4; i ++)
 		{
-			p1Pistol[i] = p1_Pistol.crop(i*200, 0, 200, 200);
+			p1Pistol[i] = p1_Pistol.crop(i*300, 0, 300, 300);
 		}
 		
 		floor1 = floors.crop(0, 0, 450, 500);
