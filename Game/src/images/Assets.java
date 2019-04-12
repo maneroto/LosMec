@@ -11,7 +11,7 @@ public class Assets {
 	public static void init()
 	{
 		SpriteSheet floors = new SpriteSheet(ImageLoader.loadImage("/sprites/walls/textures1.jpg"));
-		SpriteSheet p1_Pistol = new SpriteSheet(ImageLoader.loadImage("/sprites/characters/p1/p1-sniper.png"));
+		SpriteSheet p1_Pistol = new SpriteSheet(ImageLoader.loadImage("/sprites/characters/p1/p1-spawn.png"));
 		
 		p1Pistol = new BufferedImage[4];
 		for (int i = 0; i < 4; i ++)
