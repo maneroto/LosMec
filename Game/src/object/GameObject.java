@@ -121,4 +121,7 @@ public abstract class GameObject {
 	{
 		return (int)velY;
 	}
+
+	public void shoot() {
+	}
 }

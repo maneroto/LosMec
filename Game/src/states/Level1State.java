@@ -87,7 +87,10 @@ public class Level1State extends State{
 					case KeyEvent.VK_S:
 						o.setVelY(4);
 						down = true;
-						break;				
+						break;
+					case KeyEvent.VK_SPACE:
+						o.shoot();
+						break;
 				}
 				if(left && right) o.setVelX(0);
 				if(up && down) o.setVelY(0);
