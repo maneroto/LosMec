@@ -18,17 +18,17 @@ public class Player extends Character{
 
 	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm) {
 		super(x, y,  id, handler);
-		// TODO Auto-generated constructor stub
+		
 		vida = 100;
 		daño = 20;
-		width = 64;
-		height = 64;
+		width = 160;
+		height = 160;
 		this.s = s;
 		bounds= new Rectangle(0, 0, width, height);
-		bounds.y = 20;
-		bounds.x = 20;
-		bounds.width = 27;
-		bounds.height = 27;
+		bounds.y = 60;
+		bounds.x = 60;
+		bounds.width = 40;
+		bounds.height = 40;
 		this.id = ID.Jugador;
 		this.gsm = gsm;
 		
@@ -107,18 +107,11 @@ public class Player extends Character{
 			p1Pistol.setCurrentFrame(2);
 		}
 	}
-	/**
-	 * Remueve el objeto del ArrayList del Handler si su vida llega a 0
-	 * Cambia el estado al estado de muerto
-	 */
 	public void muerto()
 	{
 	}
 	
 	@Override
-	/**
-	 * Realiza la accion de atacar
-	 */
 	public void atacar()
 	{
 		atackTimer += System.currentTimeMillis() - lastAtackTimer;
