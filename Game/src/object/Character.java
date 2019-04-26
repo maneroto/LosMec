@@ -11,7 +11,7 @@ public abstract class Character extends GameObject{
 	protected long tiempoRecargaAtaque;
 	protected long tiempoRecargaEspecial;
 	protected long atackTimer;
-	protected int dirAtaque;
+	protected char dirAtaque;
 	protected boolean atacando;
 	protected int puntosMuerte;
 	
@@ -21,7 +21,7 @@ public abstract class Character extends GameObject{
 		super(x, y, id);
 		// TODO Auto-generated constructor stub
 		this.handler = handler;
-		this.dirAtaque = -1;
+		this.dirAtaque = 'u';
 	}
 
 	public abstract void tick();
@@ -45,8 +45,10 @@ public abstract class Character extends GameObject{
 	public void move() {
 		moveX();
 		moveY();
-		if(velX > 0) dirAtaque = 1;
-		else if (velX < 0) dirAtaque = -1;
+		if(velX > 0) dirAtaque = 'r';
+		else if (velX < 0) dirAtaque = 'l';
+		if(velY > 0) dirAtaque = 'u';
+		else if (velY < 0) dirAtaque = 'd';
 	}
 
 	protected boolean collisionWithTile(int x, int y){

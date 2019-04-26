@@ -5,5 +5,6 @@ public enum ID {
 	Jugador(),
 	Enemigo(),
 	Coleccionable(),
-	Visual()
+	Visual(),
+	Bala()
 }

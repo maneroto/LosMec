@@ -21,14 +21,14 @@ public class Player extends Character{
 		// TODO Auto-generated constructor stub
 		vida = 100;
 		daño = 20;
-		width = 64;
-		height = 64;
+		width = 200;
+		height = 200;
 		this.s = s;
 		bounds= new Rectangle(0, 0, width, height);
-		bounds.y = 20;
-		bounds.x = 20;
-		bounds.width = 27;
-		bounds.height = 27;
+		bounds.y = 80;
+		bounds.x = 80;
+		bounds.width = 40;
+		bounds.height = 40;
 		this.id = ID.Jugador;
 		this.gsm = gsm;
 		
