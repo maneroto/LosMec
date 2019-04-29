@@ -3,6 +3,7 @@ package object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.TimeUnit;
 
 import images.Animation;
 import main.GameStateManager;
@@ -14,7 +15,11 @@ public class Player extends Character{
 	
 	private GameStateManager gsm;
 	private State s;
-	private Animation p1Pistol;
+	private Animation animation;
+	private long lastTime, timer;
+	int weaponSpeed=1500;
+	int weaponDamage=2;
+	char weaponDirection='u';
 
 	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm) {
 		super(x, y,  id, handler);
@@ -37,13 +42,15 @@ public class Player extends Character{
 		tiempoRecargaAtaque = 300;
 		atackTimer = tiempoRecargaAtaque;
 		
-		p1Pistol = new Animation(10, Assets.p1Pistol);
+		animation = new Animation(10, Assets.p1Spawn);
 	}
 
 	@Override
 	public void tick() {
 		
-		move();
+		move();		
+		tickDirection();
+		//System.out.println(weaponDirection);
 		
 		colisionItem((int)velX, 0);
 		colisionItem(0, (int)velY);
@@ -51,6 +58,21 @@ public class Player extends Character{
 		vida = (int) clamp(vida, 0, 100);
 		
 		s.getCamera().centerOnObject(this);
+	}
+	
+	public void  tickDirection() {
+		if (velX > 0) {
+			weaponDirection = 'r';
+		}
+		if (velX < 0) {
+			weaponDirection = 'l';
+		}
+		if(velY > 0) {
+			weaponDirection = 'd';
+		}
+		if(velY < 0) {
+			weaponDirection = 'u';
+		}		
 	}
 	
 	public void herir(double cantidad)
@@ -68,7 +90,7 @@ public class Player extends Character{
 			}else{
 				x = tx * Tile.WIDTH - bounds.x - bounds.width - 1;
 			}
-			p1Pistol.setCurrentFrame(3);
+			animation.setCurrentFrame(3);
 			
 		}else if(velX < 0){//Moving left
 			int tx = (int) (x + velX + bounds.x) / Tile.WIDTH;
@@ -79,7 +101,7 @@ public class Player extends Character{
 			}else{
 				x = tx * Tile.WIDTH + Tile.WIDTH - bounds.x;
 			}
-			p1Pistol.setCurrentFrame(1);
+			animation.setCurrentFrame(1);
 		}
 	}
 
@@ -93,7 +115,7 @@ public class Player extends Character{
 			}else{
 				y = ty * Tile.HEIGHT + Tile.HEIGHT - bounds.y;
 			}
-			p1Pistol.setCurrentFrame(0);
+			animation.setCurrentFrame(0);
 			
 		}else if(velY > 0){//Down
 			int ty = (int) (y + velY + bounds.y + bounds.height) / Tile.HEIGHT;
@@ -104,7 +126,7 @@ public class Player extends Character{
 			}else{
 				y = ty * Tile.HEIGHT - bounds.y - bounds.height - 1;
 			}
-			p1Pistol.setCurrentFrame(2);
+			animation.setCurrentFrame(2);
 		}
 	}
 	/**
@@ -148,19 +170,7 @@ public class Player extends Character{
 		
 		atackTimer = 0;
 		
-		for (GameObject o: handler.objeto)
-		{
-			if(o.getId() == ID.Enemigo)
-			{
-				if(o.getBounds().intersects(ataque))
-				{
-					System.out.println("Boom");
-					((Character) o).herir(daño);
-					((Character) o).setX(((Character) o).getX() + (((Character) o).getVelX() / 2 - 8) *-1);
-					return;
-				}
-			}
-		}
+
 	}
 	
 	@Override
@@ -172,7 +182,7 @@ public class Player extends Character{
 	
 	public BufferedImage getCurrentAnimationFrame()
 	{
-		return p1Pistol.getCurrentFrame();
+		return animation.getCurrentFrame();
 	}
 	
 	@Override
@@ -189,15 +199,91 @@ public class Player extends Character{
 	{
 		for (GameObject o: handler.objeto)
 		{
-			
+			if(o.getId() == ID.Arma) 
+			{
+				if(o instanceof Weapon_Assault)
+				{
+					if(((Weapon_Assault)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{	
+						weaponDamage = ((Weapon)o).getDamage();
+						weaponSpeed = ((Weapon)o).getSpeed();
+						handler.removeObject(o);
+						animation = new Animation(10, Assets.p1Assault);
+					}
+				}
+				if(o instanceof Weapon_Pistol)
+				{
+					if(((Weapon_Pistol)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{
+						weaponDamage = ((Weapon)o).getDamage();
+						weaponSpeed = ((Weapon)o).getSpeed();
+						handler.removeObject(o);
+						animation = new Animation(10, Assets.p1Pistol);
+					}
+				}
+				if(o instanceof Weapon_Launcher)
+				{
+					if(((Weapon_Launcher)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{	
+						weaponDamage = ((Weapon)o).getDamage();
+						weaponSpeed = ((Weapon)o).getSpeed();
+						handler.removeObject(o);
+						animation = new Animation(10, Assets.p1Launcher);
+					}
+				}
+				if(o instanceof Weapon_Minigun)
+				{
+					if(((Weapon_Minigun)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{
+						weaponDamage = ((Weapon)o).getDamage();
+						weaponSpeed = ((Weapon)o).getSpeed();
+						handler.removeObject(o);
+						animation = new Animation(10, Assets.p1Minigun);
+					}
+				}
+				if(o instanceof Weapon_Shotgun)
+				{
+					if(((Weapon_Shotgun)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{	
+						weaponDamage = ((Weapon)o).getDamage();
+						weaponSpeed = ((Weapon)o).getSpeed();
+						handler.removeObject(o);
+						animation = new Animation(10, Assets.p1Shotgun);
+					}
+				}
+				if(o instanceof Weapon_Smg)
+				{
+					if(((Weapon_Smg)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{
+						weaponDamage = ((Weapon)o).getDamage();
+						weaponSpeed = ((Weapon)o).getSpeed();
+						handler.removeObject(o);
+						animation = new Animation(10, Assets.p1Smg);
+					}
+				}
+				if(o instanceof Weapon_Sniper)
+				{
+					if(((Weapon_Sniper)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{
+						weaponDamage = ((Weapon)o).getDamage();
+						weaponSpeed = ((Weapon)o).getSpeed();
+						handler.removeObject(o);
+						animation = new Animation(10, Assets.p1Sniper);
+					}
+				}
+			}
+				
 		}
 	}
-
+	
 	@Override
 	public void shoot() {
-		
-		System.out.println("disparo");
-		
+		timer += System.currentTimeMillis() - lastTime;
+		lastTime = System.currentTimeMillis();
+		if(timer > weaponSpeed)
+		{
+			timer = 0;
+			System.out.println("disparo");
+		}
 	}
-
 }

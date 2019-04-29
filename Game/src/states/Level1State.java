@@ -2,15 +2,16 @@ package states;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 import audios.AudioLoader;
+import images.GameCamera;
 import main.GameStateManager;
 import object.GameObject;
+import object.Handler;
 import object.ID;
 import tile.Tile;
 import world.WorldLoader;
-import object.Handler;
-import images.GameCamera;
 
 public class Level1State extends State{
 
@@ -47,6 +48,15 @@ public class Level1State extends State{
 		handler.setWorld(world);
 		handler.addObject(new object.Player(handler.getWorld().getSpawnX() * Tile.WIDTH
 				, handler.getWorld().getSpawnY() * Tile.HEIGHT, ID.Jugador, handler, this, gsm));
+		
+		handler.addObject(new object.Weapon_Assault(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(5)+1), ID.Arma, handler));
+		handler.addObject(new object.Weapon_Launcher(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(4)+6), ID.Arma, handler));
+		handler.addObject(new object.Weapon_Smg(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(3)+12), ID.Arma, handler));
+		handler.addObject(new object.Weapon_Pistol(tile.Tile.WIDTH*(new Random().nextInt(4)+10), tile.Tile.HEIGHT*(new Random().nextInt(5)+1), ID.Arma, handler));
+		handler.addObject(new object.Weapon_Shotgun(tile.Tile.WIDTH*(new Random().nextInt(9)+14), tile.Tile.HEIGHT*(new Random().nextInt(5)+1), ID.Arma, handler));
+		handler.addObject(new object.Weapon_Minigun(tile.Tile.WIDTH*(new Random().nextInt(8)+15), tile.Tile.HEIGHT*(new Random().nextInt(5)+6), ID.Arma, handler));
+		handler.addObject(new object.Weapon_Sniper(tile.Tile.WIDTH*(new Random().nextInt(10)+11), tile.Tile.HEIGHT*(new Random().nextInt(4)+11), ID.Arma, handler));
+		
 		
 	}
 	

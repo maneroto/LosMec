@@ -3,8 +3,8 @@ package object;
 public enum ID {
 	Solido(),
 	Jugador(),
-	Enemigo(),
-	Coleccionable(),
+	Arma(),
+	PowerUp(),
 	Visual(),
 	Bala()
 }
