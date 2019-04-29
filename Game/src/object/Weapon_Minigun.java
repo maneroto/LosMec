@@ -8,7 +8,8 @@ import images.Assets;
 public class Weapon_Minigun extends Weapon{
 
 	int weaponDamage=1;
-	int weaponSpeed=10;
+	int weaponSpeed=15;
+	String weaponSoundFile = "res\\\\sounds\\\\minigun_carry\\\\fire01.wav";
 	
 	public Weapon_Minigun(double x, double y, ID id, Handler handler) {
 		super(x, y, id, handler);
@@ -41,6 +42,11 @@ public class Weapon_Minigun extends Weapon{
 	@Override
 	public int getSpeed() {
 		return weaponSpeed;
+	}
+	
+	@Override
+	public String getSound() {
+		return weaponSoundFile;
 	}
 
 }

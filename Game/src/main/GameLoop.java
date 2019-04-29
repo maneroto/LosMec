@@ -115,7 +115,7 @@ public class GameLoop implements Runnable{
 			
 			if (timer >= 1000000000)
 			{
-				System.out.println("Ticks and frames: " + ticks);
+				//System.out.println("Ticks and frames: " + ticks);
 				ticks = 0;
 				timer = 0;
 			}

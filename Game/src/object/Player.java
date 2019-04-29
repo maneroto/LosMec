@@ -1,10 +1,12 @@
 package object;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.TimeUnit;
 
+import audios.AudioLoader;
 import images.Animation;
 import main.GameStateManager;
 import states.State;
@@ -17,9 +19,11 @@ public class Player extends Character{
 	private State s;
 	private Animation animation;
 	private long lastTime, timer;
-	int weaponSpeed=1500;
-	int weaponDamage=2;
-	char weaponDirection='u';
+	char bulletDirection='u';
+	int weaponDamage = 20;
+	int weaponSpeed = 150;
+	String weaponSoundFile = "res\\\\sounds\\\\glock_18\\\\fire01.wav";
+	AudioLoader weaponSound = new AudioLoader(weaponSoundFile);
 
 	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm) {
 		super(x, y,  id, handler);
@@ -42,7 +46,7 @@ public class Player extends Character{
 		tiempoRecargaAtaque = 300;
 		atackTimer = tiempoRecargaAtaque;
 		
-		animation = new Animation(10, Assets.p1Spawn);
+		animation = new Animation(10, Assets.p1Pistol);
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class Player extends Character{
 		
 		move();		
 		tickDirection();
-		//System.out.println(weaponDirection);
+		//System.out.println(bulletDirection);
 		
 		colisionItem((int)velX, 0);
 		colisionItem(0, (int)velY);
@@ -61,18 +65,18 @@ public class Player extends Character{
 	}
 	
 	public void  tickDirection() {
-		if (velX > 0) {
-			weaponDirection = 'r';
-		}
-		if (velX < 0) {
-			weaponDirection = 'l';
-		}
 		if(velY > 0) {
-			weaponDirection = 'd';
+			bulletDirection = 'd';
 		}
-		if(velY < 0) {
-			weaponDirection = 'u';
-		}		
+		else if(velY < 0) {
+			bulletDirection = 'u';
+		}	
+		else if (velX > 0) {
+			bulletDirection = 'r';
+		}
+		else if (velX < 0) {
+			bulletDirection = 'l';
+		}
 	}
 	
 	public void herir(double cantidad)
@@ -177,7 +181,9 @@ public class Player extends Character{
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - s.getCamera().getXOffset())
 				, (int) (y - s.getCamera().getYOffset()), 
-				width, height, null);		
+				width, height, null);
+		g.setColor(Color.WHITE);
+		g.drawRect((int)(x+bounds.x - s.getCamera().getXOffset()),(int)(y+bounds.y - s.getCamera().getYOffset()), bounds.width, bounds.height);
 	}
 	
 	public BufferedImage getCurrentAnimationFrame()
@@ -207,6 +213,7 @@ public class Player extends Character{
 					{	
 						weaponDamage = ((Weapon)o).getDamage();
 						weaponSpeed = ((Weapon)o).getSpeed();
+						weaponSoundFile = ((Weapon)o).getSound();
 						handler.removeObject(o);
 						animation = new Animation(10, Assets.p1Assault);
 					}
@@ -217,6 +224,7 @@ public class Player extends Character{
 					{
 						weaponDamage = ((Weapon)o).getDamage();
 						weaponSpeed = ((Weapon)o).getSpeed();
+						weaponSoundFile = ((Weapon)o).getSound();
 						handler.removeObject(o);
 						animation = new Animation(10, Assets.p1Pistol);
 					}
@@ -227,6 +235,7 @@ public class Player extends Character{
 					{	
 						weaponDamage = ((Weapon)o).getDamage();
 						weaponSpeed = ((Weapon)o).getSpeed();
+						weaponSoundFile = ((Weapon)o).getSound();
 						handler.removeObject(o);
 						animation = new Animation(10, Assets.p1Launcher);
 					}
@@ -237,6 +246,7 @@ public class Player extends Character{
 					{
 						weaponDamage = ((Weapon)o).getDamage();
 						weaponSpeed = ((Weapon)o).getSpeed();
+						weaponSoundFile = ((Weapon)o).getSound();
 						handler.removeObject(o);
 						animation = new Animation(10, Assets.p1Minigun);
 					}
@@ -247,6 +257,7 @@ public class Player extends Character{
 					{	
 						weaponDamage = ((Weapon)o).getDamage();
 						weaponSpeed = ((Weapon)o).getSpeed();
+						weaponSoundFile = ((Weapon)o).getSound();
 						handler.removeObject(o);
 						animation = new Animation(10, Assets.p1Shotgun);
 					}
@@ -257,6 +268,7 @@ public class Player extends Character{
 					{
 						weaponDamage = ((Weapon)o).getDamage();
 						weaponSpeed = ((Weapon)o).getSpeed();
+						weaponSoundFile = ((Weapon)o).getSound();
 						handler.removeObject(o);
 						animation = new Animation(10, Assets.p1Smg);
 					}
@@ -267,6 +279,7 @@ public class Player extends Character{
 					{
 						weaponDamage = ((Weapon)o).getDamage();
 						weaponSpeed = ((Weapon)o).getSpeed();
+						weaponSoundFile = ((Weapon)o).getSound();
 						handler.removeObject(o);
 						animation = new Animation(10, Assets.p1Sniper);
 					}
@@ -275,7 +288,7 @@ public class Player extends Character{
 				
 		}
 	}
-	
+		
 	@Override
 	public void shoot() {
 		timer += System.currentTimeMillis() - lastTime;
@@ -283,7 +296,23 @@ public class Player extends Character{
 		if(timer > weaponSpeed)
 		{
 			timer = 0;
-			System.out.println("disparo");
+			int bulletXOffset = 0, bulletYOffset = 0;
+			if(bulletDirection == 'u')
+			{
+				bulletXOffset = 30;
+			}
+			else if(bulletDirection == 'r')
+			{
+				bulletYOffset = 30;
+				bulletXOffset = 30;
+			}
+			else if(bulletDirection == 'd')
+			{
+				bulletYOffset = 30;
+			}
+			handler.addObject(new object.Bullet((int)(x - s.getCamera().getXOffset() + bounds.x + bulletXOffset), (int)(y - s.getCamera().getYOffset() + bounds.y + bulletYOffset), ID.Bala, bulletDirection, 10));
+			weaponSound.setLocation(weaponSoundFile);
+			weaponSound.play();
 		}
 	}
 }

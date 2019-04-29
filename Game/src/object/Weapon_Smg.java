@@ -9,6 +9,7 @@ public class Weapon_Smg extends Weapon{
 
 	int weaponDamage=5;
 	int weaponSpeed=100;
+	String weaponSoundFile = "res\\\\sounds\\\\uzi\\\\fire01.wav";
 	
 	public Weapon_Smg(double x, double y, ID id, Handler handler) {
 		super(x, y, id, handler);
@@ -42,5 +43,9 @@ public class Weapon_Smg extends Weapon{
 	public int getSpeed() {
 		return weaponSpeed;
 	}
-
+	
+	@Override
+	public String getSound() {
+		return weaponSoundFile;
+	}
 }

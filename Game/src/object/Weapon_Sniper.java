@@ -8,7 +8,8 @@ import images.Assets;
 public class Weapon_Sniper extends Weapon{
 
 	int weaponDamage=100;
-	int weaponSpeed=3000;
+	int weaponSpeed=1500;
+	String weaponSoundFile = "res\\\\sounds\\\\dragunov\\\\fire01.wav";
 	
 	public Weapon_Sniper(double x, double y, ID id, Handler handler) {
 		super(x, y, id, handler);
@@ -42,5 +43,9 @@ public class Weapon_Sniper extends Weapon{
 	public int getSpeed() {
 		return weaponSpeed;
 	}
-
+	
+	@Override
+	public String getSound() {
+		return weaponSoundFile;
+	}
 }

@@ -8,7 +8,8 @@ import images.Assets;
 public class Weapon_Launcher extends Weapon{
 
 	int weaponDamage=100;
-	int weaponSpeed=3000;
+	int weaponSpeed=2000;
+	String weaponSoundFile = "res\\\\sounds\\\\rocket_launcher\\\\fire01.wav";
 	
 	public Weapon_Launcher(double x, double y, ID id, Handler handler) {
 		super(x, y, id, handler);
@@ -41,6 +42,11 @@ public class Weapon_Launcher extends Weapon{
 	@Override
 	public int getSpeed() {
 		return weaponSpeed;
+	}
+	
+	@Override
+	public String getSound() {
+		return weaponSoundFile;
 	}
 
 }

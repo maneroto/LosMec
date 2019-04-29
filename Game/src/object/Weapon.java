@@ -3,6 +3,8 @@ package object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import audios.AudioLoader;
+
 public abstract class Weapon extends GameObject{
 	
 	protected Handler handler;
@@ -30,5 +32,7 @@ public abstract class Weapon extends GameObject{
 	public abstract int getDamage();
 
 	public abstract int getSpeed();
+
+	public abstract String getSound();
 
 }

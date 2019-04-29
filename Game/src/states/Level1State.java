@@ -31,7 +31,7 @@ public class Level1State extends State{
 		// TODO Auto-generated method stub
 		
 		soundtrack = new AudioLoader("res\\\\soundtrack\\\\soundtrack.wav");
-		soundtrack.play();
+		soundtrack.loop();
 		
 		left = false;
 		right = false;

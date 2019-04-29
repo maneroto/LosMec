@@ -1,4 +1,4 @@
-package object;
+	package object;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -8,7 +8,8 @@ import images.Assets;
 public class Weapon_Shotgun extends Weapon{
 
 	int weaponDamage=50;
-	int weaponSpeed=1000;
+	int weaponSpeed=750;
+	String weaponSoundFile = "res\\\\sounds\\\\remington\\\\fire01.wav";
 	
 	public Weapon_Shotgun(double x, double y, ID id, Handler handler) {
 		super(x, y, id, handler);
@@ -41,6 +42,11 @@ public class Weapon_Shotgun extends Weapon{
 	@Override
 	public int getSpeed() {
 		return weaponSpeed;
+	}
+	
+	@Override
+	public String getSound() {
+		return weaponSoundFile;
 	}
 
 }

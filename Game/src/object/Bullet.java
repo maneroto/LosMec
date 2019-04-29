@@ -1,5 +1,6 @@
 package object;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -28,6 +29,7 @@ public class Bullet extends GameObject{
 	}
 
 	public void render(Graphics g) {
+		g.setColor(Color.WHITE);
 		g.drawOval((int)x, (int)y, width, height);
 		g.fillOval((int)x, (int)y, width, height);
 	}
