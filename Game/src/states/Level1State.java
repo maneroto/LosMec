@@ -57,7 +57,9 @@ public class Level1State extends State{
 		handler.addObject(new object.Weapon_Minigun(tile.Tile.WIDTH*(new Random().nextInt(8)+15), tile.Tile.HEIGHT*(new Random().nextInt(5)+6), ID.Arma, handler));
 		handler.addObject(new object.Weapon_Sniper(tile.Tile.WIDTH*(new Random().nextInt(10)+11), tile.Tile.HEIGHT*(new Random().nextInt(4)+11), ID.Arma, handler));
 		
-		
+		handler.addObject(new object.Powerup_Health(tile.Tile.WIDTH*(new Random().nextInt(10)+11), tile.Tile.HEIGHT*(new Random().nextInt(4)+11), ID.PowerUp, handler));
+		handler.addObject(new object.Powerup_Speed(tile.Tile.WIDTH*(new Random().nextInt(10)+11), tile.Tile.HEIGHT*(new Random().nextInt(4)+11), ID.PowerUp, handler));
+		handler.addObject(new object.Powerup_Damage(tile.Tile.WIDTH*(new Random().nextInt(10)+11), tile.Tile.HEIGHT*(new Random().nextInt(4)+11), ID.PowerUp, handler));
 	}
 	
 	@Override
@@ -75,7 +77,6 @@ public class Level1State extends State{
 	
 	@Override
 	public void keyPressed(int k) {
-		// TODO Auto-generated method stub
 		for (GameObject o: handler.objeto)
 		{
 			if(o.getId() == ID.Jugador)
@@ -83,19 +84,19 @@ public class Level1State extends State{
 				switch(k)
 				{
 					case KeyEvent.VK_A:
-						o.setVelX(-4);
+						o.setVelX(-4*velMult);
 						left = true;
 						break;
 					case KeyEvent.VK_D:
-						o.setVelX(4);
+						o.setVelX(4*velMult);
 						right = true;
 						break;
 					case KeyEvent.VK_W:
-						o.setVelY(-4);
+						o.setVelY(-4*velMult);
 						up = true;
 						break;
 					case KeyEvent.VK_S:
-						o.setVelY(4);
+						o.setVelY(4*velMult);
 						down = true;
 						break;
 					case KeyEvent.VK_SPACE:

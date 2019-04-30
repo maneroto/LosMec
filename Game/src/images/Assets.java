@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	public static BufferedImage floor1, bullet, wall1, assault, pistol, shotgun, launcher, minigun, smg, sniper;
+	public static BufferedImage floor1, bullet, wall1, assault, pistol, shotgun, launcher, minigun, smg, sniper, damage, health, speed;
 	
 	public static BufferedImage[] onChangeAnim, p1Pistol, p1Assault, p1Spawn, p1Shotgun, p1Launcher, p1Minigun, p1Smg, p1Sniper;
 
@@ -79,6 +79,9 @@ public class Assets {
 		minigun = ImageLoader.loadImage("/sprites/weapons/minigun.png");
 		sniper = ImageLoader.loadImage("/sprites/weapons/sniper.png");
 		smg = ImageLoader.loadImage("/sprites/weapons/smg.png");
+		damage = ImageLoader.loadImage("/sprites/powerups/damage.png");
+		speed = ImageLoader.loadImage("/sprites/powerups/speed.png");
+		health = ImageLoader.loadImage("/sprites/powerups/health.png");
 	}
 	
 }

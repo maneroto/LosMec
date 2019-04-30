@@ -28,8 +28,7 @@ public class Player extends Character{
 	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm) {
 		super(x, y,  id, handler);
 		// TODO Auto-generated constructor stub
-		vida = 100;
-		daño = 20;
+		vida = 50;
 		width = 200;
 		height = 200;
 		this.s = s;
@@ -285,7 +284,33 @@ public class Player extends Character{
 					}
 				}
 			}
-				
+			if(o.getId() == ID.PowerUp) 
+			{
+				if(o instanceof Powerup_Health)
+				{
+					if(((Powerup_Health)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{	
+						vida = ((Powerup)o).getBonus();
+						handler.removeObject(o);
+					}
+				}
+				if(o instanceof Powerup_Speed)
+				{
+					if(((Powerup_Speed)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{	
+						s.setVelMult(((Powerup)o).getBonus());
+						handler.removeObject(o);
+					}
+				}
+				if(o instanceof Powerup_Damage)
+				{
+					if(((Powerup_Damage)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+					{	
+						weaponDamage *= ((Powerup)o).getBonus();
+						handler.removeObject(o);
+					}
+				}
+			}
 		}
 	}
 		

@@ -7,6 +7,7 @@ import images.GameCamera;
 
 public abstract class State {
 	
+	int velMult = 1;
 	protected GameStateManager gsm;
 	protected GameCamera gameCamera;
 	
@@ -16,5 +17,8 @@ public abstract class State {
 	public abstract void keyPressed(int k);
 	public abstract void keyReleased(int k);
 	public GameCamera getCamera(){return gameCamera;}
-
+	
+	public void setVelMult(int velMult) {
+		this.velMult = velMult;
+	}
 }
