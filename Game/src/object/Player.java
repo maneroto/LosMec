@@ -23,7 +23,8 @@ public class Player extends Character{
 	int weaponDamage = 20;
 	int weaponSpeed = 150;
 	String weaponSoundFile = "res\\\\sounds\\\\glock_18\\\\fire01.wav";
-	AudioLoader weaponSound = new AudioLoader(weaponSoundFile);
+	AudioLoader weaponSound = new AudioLoader(weaponSoundFile)
+			, reload = new AudioLoader("res\\\\sounds\\\\franchi\\\\pump.wav");
 
 	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm) {
 		super(x, y,  id, handler);
@@ -38,7 +39,7 @@ public class Player extends Character{
 		bounds.x = 80;
 		bounds.width = 40;
 		bounds.height = 40;
-		this.id = ID.Jugador;
+		this.id = id;
 		this.gsm = gsm;
 		
 		atacando = false;
@@ -60,8 +61,6 @@ public class Player extends Character{
 		colisionItem(0, (int)velY);
 		
 		vida = (int) clamp(vida, 0, 100);
-		
-		s.getCamera().centerOnObject(this);
 	}
 	
 	public void  tickDirection() {
@@ -133,18 +132,11 @@ public class Player extends Character{
 			animation.setCurrentFrame(2);
 		}
 	}
-	/**
-	 * Remueve el objeto del ArrayList del Handler si su vida llega a 0
-	 * Cambia el estado al estado de muerto
-	 */
+	
 	public void muerto()
 	{
 	}
 	
-	@Override
-	/**
-	 * Realiza la accion de atacar
-	 */
 	public void atacar()
 	{
 		atackTimer += System.currentTimeMillis() - lastAtackTimer;
@@ -179,11 +171,9 @@ public class Player extends Character{
 	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(getCurrentAnimationFrame(), (int) (x - s.getCamera().getXOffset())
-				, (int) (y - s.getCamera().getYOffset()), 
-				width, height, null);
+		g.drawImage(getCurrentAnimationFrame(), (int) x, (int) y, width, height, null);
 		g.setColor(Color.WHITE);
-		g.drawRect((int)(x+bounds.x - s.getCamera().getXOffset()),(int)(y+bounds.y - s.getCamera().getYOffset()), bounds.width, bounds.height);
+		g.drawRect((int)(x+bounds.x),(int)(y+bounds.y), bounds.width, bounds.height);
 	}
 	
 	public BufferedImage getCurrentAnimationFrame()
@@ -211,82 +201,64 @@ public class Player extends Character{
 				{
 					if(((Weapon_Assault)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{	
-						weaponDamage = ((Weapon)o).getDamage();
-						weaponSpeed = ((Weapon)o).getSpeed();
-						weaponSoundFile = ((Weapon)o).getSound();
-						handler.removeObject(o);
-						animation = new Animation(10, Assets.p1Assault);
+						changeWeapon((Weapon)o, Assets.p1Assault);
 					}
 				}
 				if(o instanceof Weapon_Pistol)
 				{
 					if(((Weapon_Pistol)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{
-						weaponDamage = ((Weapon)o).getDamage();
-						weaponSpeed = ((Weapon)o).getSpeed();
-						weaponSoundFile = ((Weapon)o).getSound();
-						handler.removeObject(o);
-						animation = new Animation(10, Assets.p1Pistol);
+						changeWeapon((Weapon)o, Assets.p1Pistol);
 					}
 				}
 				if(o instanceof Weapon_Launcher)
 				{
 					if(((Weapon_Launcher)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{	
-						weaponDamage = ((Weapon)o).getDamage();
-						weaponSpeed = ((Weapon)o).getSpeed();
-						weaponSoundFile = ((Weapon)o).getSound();
-						handler.removeObject(o);
-						animation = new Animation(10, Assets.p1Launcher);
+						changeWeapon((Weapon)o, Assets.p1Launcher);
 					}
 				}
 				if(o instanceof Weapon_Minigun)
 				{
 					if(((Weapon_Minigun)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{
-						weaponDamage = ((Weapon)o).getDamage();
-						weaponSpeed = ((Weapon)o).getSpeed();
-						weaponSoundFile = ((Weapon)o).getSound();
-						handler.removeObject(o);
-						animation = new Animation(10, Assets.p1Minigun);
+						changeWeapon((Weapon)o, Assets.p1Minigun);
 					}
 				}
 				if(o instanceof Weapon_Shotgun)
 				{
 					if(((Weapon_Shotgun)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{	
-						weaponDamage = ((Weapon)o).getDamage();
-						weaponSpeed = ((Weapon)o).getSpeed();
-						weaponSoundFile = ((Weapon)o).getSound();
-						handler.removeObject(o);
-						animation = new Animation(10, Assets.p1Shotgun);
+						changeWeapon((Weapon)o, Assets.p1Shotgun);
 					}
 				}
 				if(o instanceof Weapon_Smg)
 				{
 					if(((Weapon_Smg)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{
-						weaponDamage = ((Weapon)o).getDamage();
-						weaponSpeed = ((Weapon)o).getSpeed();
-						weaponSoundFile = ((Weapon)o).getSound();
-						handler.removeObject(o);
-						animation = new Animation(10, Assets.p1Smg);
+						changeWeapon((Weapon)o, Assets.p1Smg);
 					}
 				}
 				if(o instanceof Weapon_Sniper)
 				{
 					if(((Weapon_Sniper)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{
-						weaponDamage = ((Weapon)o).getDamage();
-						weaponSpeed = ((Weapon)o).getSpeed();
-						weaponSoundFile = ((Weapon)o).getSound();
-						handler.removeObject(o);
-						animation = new Animation(10, Assets.p1Sniper);
+						changeWeapon((Weapon)o, Assets.p1Sniper);
 					}
 				}
 			}
 				
 		}
+	}
+	
+	public void changeWeapon(Weapon o, BufferedImage[] anim)
+	{
+		weaponDamage = ((Weapon)o).getDamage();
+		weaponSpeed = ((Weapon)o).getSpeed();
+		weaponSoundFile = ((Weapon)o).getSound();
+		handler.removeObject(o);
+		animation = new Animation(10, anim);
+		reload.play();
 	}
 		
 	@Override
@@ -310,7 +282,7 @@ public class Player extends Character{
 			{
 				bulletYOffset = 30;
 			}
-			handler.addObject(new object.Bullet((int)(x - s.getCamera().getXOffset() + bounds.x + bulletXOffset), (int)(y - s.getCamera().getYOffset() + bounds.y + bulletYOffset), ID.Bala, bulletDirection, 10));
+			handler.addObject(new object.Bullet((int)(x + bounds.x + bulletXOffset), (int)(y + bounds.y + bulletYOffset), ID.Bala, handler, bulletDirection, 10));
 			weaponSound.setLocation(weaponSoundFile);
 			weaponSound.play();
 		}

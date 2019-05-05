@@ -2,7 +2,8 @@ package object;
 
 public enum ID {
 	Solido(),
-	Jugador(),
+	Jugador1(),
+	Jugador2(),
 	Arma(),
 	PowerUp(),
 	Visual(),

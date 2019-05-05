@@ -25,8 +25,7 @@ public class Weapon_Smg extends Weapon{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.smg, (int) (x - handler.getCamera().getXOffset()),
-				(int) (y - handler.getCamera().getYOffset()), width, height, null);
+		g.drawImage(Assets.smg, (int) x, (int) y, width, height, null);
 	}
 	
 	@Override

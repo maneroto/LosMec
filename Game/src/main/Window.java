@@ -1,5 +1,7 @@
 package main;
+import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -31,19 +33,22 @@ public class Window {
 		
 		frame.setFocusable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setUndecorated(true);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-
+		
 		canvas = new Canvas();
 
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension (width, height));
+		canvas.setBackground(Color.BLACK);
 		
 		canvas.setFocusable(false);
-		frame.add(canvas);
+		frame.getContentPane().add(canvas);
 		frame.pack();
+		frame.setVisible(true);
 		frame.requestFocus();
 	}
 	

@@ -25,8 +25,7 @@ public class Weapon_Minigun extends Weapon{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.minigun, (int) (x - handler.getCamera().getXOffset()),
-				(int) (y - handler.getCamera().getYOffset()), width, height, null);
+		g.drawImage(Assets.minigun, (int) x, (int) y, width, height, null);
 	}
 	
 	@Override

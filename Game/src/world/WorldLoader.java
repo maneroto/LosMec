@@ -1,21 +1,16 @@
 package world;
 
 import java.awt.Graphics;
-
-import object.Handler;
-import main.GameLoop;
 import tile.Tile;
 
 public class WorldLoader {
 	private int width;
 	private int height;
-	private int spawnX, spawnY;
+	private int spawnP1X, spawnP1Y, spawnP2X, spawnP2Y;
 	private int [][] tiles;
-	private Handler handler;
 
-	public WorldLoader(Handler handler, String path)
+	public WorldLoader(String path)
 	{
-		this.handler = handler;
 		loadWorld(path);
 	}
 
@@ -25,12 +20,10 @@ public class WorldLoader {
 	}
 	public void render(Graphics g)
 	{
-		int xStart = Math.max(0, (int)(handler.getCamera().getXOffset() / Tile.WIDTH));
-		int xEnd = (int) Math.min(width, 
-				((handler.getCamera().getXOffset() + GameLoop.width )/ Tile.WIDTH + 1));
-		int yStart = Math.max(0, (int)(handler.getCamera().getYOffset() / Tile.HEIGHT));
-		int yEnd = (int) Math.min(height, 
-				((handler.getCamera().getYOffset() + GameLoop.height )/ Tile.HEIGHT + 1));
+		int xStart = 0;
+		int xEnd = width;
+		int yStart = 0;
+		int yEnd = height;
 		
 		for (int y = yStart; y < yEnd; y++)
 		{
@@ -39,8 +32,8 @@ public class WorldLoader {
 			{
 				getTile(x, y).render
 				(g, 
-						(int) (x * Tile.WIDTH - handler.getCamera().getXOffset()), 
-						(int) (y * Tile.HEIGHT - handler.getCamera().getYOffset()));
+						(int) (x * Tile.WIDTH), 
+						(int) (y * Tile.HEIGHT));
 				
 			}
 		}
@@ -55,9 +48,13 @@ public class WorldLoader {
 		return t;
 	}
 
-	public int getSpawnX() {return spawnX;}
+	public int getSpawnP1X() {return spawnP1X;}
 
-	public int getSpawnY() {return spawnY;}
+	public int getSpawnP1Y() {return spawnP1Y;}
+	
+	public int getSpawnP2X() {return spawnP2X;}
+
+	public int getSpawnP2Y() {return spawnP2Y;}
 	
 	private void loadWorld(String path)
 	{
@@ -65,15 +62,17 @@ public class WorldLoader {
 		String [] tokens = file.split("\\s+");
 		width = Utils.parseInt(tokens[0]);
 		height = Utils.parseInt(tokens[1]);
-		spawnX = Utils.parseInt(tokens[2]);
-		spawnY = Utils.parseInt(tokens[3]);
-		
+		spawnP1X = Utils.parseInt(tokens[2]);
+		spawnP1Y = Utils.parseInt(tokens[3]);
+		spawnP2X = Utils.parseInt(tokens[4]);
+		spawnP2Y = Utils.parseInt(tokens[5]);
+
 		tiles = new int[width][height];
 		for (int y = 0; y < height; y++)
 		{
 			for (int x = 0; x < width; x ++)
 			{
-				tiles[x][y] = Utils.parseInt(tokens[(x+y *width) + 4]);
+				tiles[x][y] = Utils.parseInt(tokens[(x+y *width) + 6]);
 			}
 		}
 	}

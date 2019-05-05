@@ -15,8 +15,8 @@ public abstract class Tile extends GameObject{
 	public static Tile wall1 = new Wall1(2);
 	
 	protected int iden;
-	public static final int WIDTH = 64;
-	public static final int HEIGHT = 64;
+	public static final int WIDTH = 48;
+	public static final int HEIGHT = 48;
 
 	public Tile(BufferedImage imagen, int iden) {
 		super(imagen);
