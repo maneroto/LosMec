@@ -7,7 +7,7 @@ import images.Assets;
 
 public class Weapon_Sniper extends Weapon{
 
-	int weaponDamage=100;
+	int weaponDamage=40;
 	int weaponSpeed=1500;
 	String weaponSoundFile = "res\\\\sounds\\\\dragunov\\\\fire01.wav";
 	

@@ -7,20 +7,22 @@ import java.util.Random;
 import audios.AudioLoader;
 import main.GameStateManager;
 import object.GameObject;
+import object.HUD;
 import object.Handler;
 import object.ID;
 import tile.Tile;
 import world.WorldLoader;
 
-public class Level1State extends State{
+public class FactoryState extends State{
 
 	private Handler handler;
 	private WorldLoader world;
 	private boolean left1, right1, up1, down1,
 					left2, right2, up2, down2;
 	private AudioLoader soundtrack;
+	private HUD hud;
 
-	public Level1State(GameStateManager gsm)
+	public FactoryState(GameStateManager gsm)
 	{
 		this.gsm = gsm;
 		init();
@@ -40,10 +42,11 @@ public class Level1State extends State{
 	
 		world = new WorldLoader("res/worlds/world1.txt");
 		handler.setWorld(world);
+		hud = new HUD();
 		handler.addObject(new object.Player(handler.getWorld().getSpawnP1X() * Tile.WIDTH
-				, handler.getWorld().getSpawnP1Y() * Tile.HEIGHT, ID.Jugador1, handler, this, gsm));
+				, handler.getWorld().getSpawnP1Y() * Tile.HEIGHT, ID.Jugador1, handler, this, gsm, hud));
 		handler.addObject(new object.Player(handler.getWorld().getSpawnP2X() * Tile.WIDTH
-				, handler.getWorld().getSpawnP2Y() * Tile.HEIGHT, ID.Jugador2, handler, this, gsm));
+				, handler.getWorld().getSpawnP2Y() * Tile.HEIGHT, ID.Jugador2, handler, this, gsm, hud));
 		handler.addObject(new object.Weapon_Assault(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(5)+1), ID.Arma, handler));
 		handler.addObject(new object.Weapon_Launcher(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(4)+6), ID.Arma, handler));
 		handler.addObject(new object.Weapon_Smg(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(3)+12), ID.Arma, handler));
@@ -53,12 +56,14 @@ public class Level1State extends State{
 		handler.addObject(new object.Weapon_Sniper(tile.Tile.WIDTH*(new Random().nextInt(10)+11), tile.Tile.HEIGHT*(new Random().nextInt(4)+11), ID.Arma, handler));
 		
 		
+		
 	}
 	
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
 		handler.tick();
+		hud.tick();
 	}
 
 	@Override
@@ -66,6 +71,7 @@ public class Level1State extends State{
 		// TODO Auto-generated method stub
 		world.render(g);
 		handler.render(g);
+		hud.render(g);
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ import images.Assets;
 
 public class Weapon_Assault extends Weapon{
 
-	int weaponDamage=10;
+	int weaponDamage=15;
 	int weaponSpeed=100;
 	String weaponSoundFile = "res\\\\sounds\\\\ak_47\\\\fire01.wav";
 	

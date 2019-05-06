@@ -11,19 +11,20 @@ import tile.Tile;
 
 public class Bullet extends Character{
 	
-	private int bulletSpeed;
+	private int bulletSpeed, bulletDamage;
 	AudioLoader bulletColision;
 	AudioLoader death;
 	
-	public Bullet(double x, double y, ID id, Handler handler, char direction, int bulletSpeed)
+	public Bullet(double x, double y, ID id, Handler handler, char direction, int bulletSpeed, int bulletDamage, String bulletColision)
 	{
 		super(x,y,id, handler);
-		width = 5;
-		height = 5;
+		width = 2;
+		height = 2;
 		this.dirAtaque = direction;
 		this.bulletSpeed = bulletSpeed;
+		this.bulletDamage = bulletDamage;
 		bounds= new Rectangle(0, 0, width, height);
-		bulletColision = new AudioLoader("res\\\\sounds\\\\silencer\\\\fire01.wav");
+		this.bulletColision = new AudioLoader(bulletColision);
 		death = new AudioLoader("res\\\\sounds\\\\death.wav");
 	}
 
@@ -54,12 +55,6 @@ public class Bullet extends Character{
 	@Override
 	public Rectangle getBounds() {
 		return (new Rectangle((int)x, (int) y, width, height));
-	}
-
-	@Override
-	public void atacar() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -124,15 +119,14 @@ public class Bullet extends Character{
 			{
 				if(((Player)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 				{	
-					((Player)o).setVida(((Player)o).getVida()-((Player)o).getWeaponDamage());
+					handler.removeObject(this);
+					((Player)o).setVida(((Player)o).getVida()-bulletDamage);
 					if (((Player)o).getVida() <= 0) 
 					{
-						handler.removeObject(o);
 						death.play();
 					}
 					else 
 					{
-						handler.removeObject(this);
 						bulletColision.play();
 					}
 				}

@@ -9,15 +9,19 @@ public class GameStateManager {
 	private ArrayList <State> gameStates;
 	private int currentState;
 	
-	private static int numStates = 1;
-	public static final int LEVEL1_STATE = 0;
+	private static int numStates = 4;
+	public static final int PLAYER1WINS_STATE = -1;
+	public static final int PLAYER2WINS_STATE = -2;
+	public static final int MENU_STATE = 1;
+	public static final int FACTORY_STATE = 0;
+	
 	
 	public GameStateManager()
 	{
 		gameStates = new ArrayList <State> ();
 		
-		currentState = LEVEL1_STATE;	
-		gameStates.add(new states.Level1State(this));
+		currentState = FACTORY_STATE;	
+		gameStates.add(new states.FactoryState(this));
 	}
 	
 	public void tick()
@@ -43,7 +47,7 @@ public class GameStateManager {
 	public void setSate(int state)
 	{
 		currentState = state;
-		if (currentState > numStates) currentState = LEVEL1_STATE;
+		if (currentState > numStates) currentState = FACTORY_STATE;
 		gameStates.get(currentState).init();
 	}
 	

@@ -6,14 +6,7 @@ public abstract class Character extends GameObject{
 	
 	protected Handler handler;
 	protected int vida;
-	protected double daño;
-	protected long lastAtackTimer;
-	protected long tiempoRecargaAtaque;
-	protected long tiempoRecargaEspecial;
-	protected long atackTimer;
 	protected char dirAtaque;
-	protected boolean atacando;
-	protected int puntosMuerte;
 	
 	protected Rectangle bounds;
 
@@ -26,9 +19,7 @@ public abstract class Character extends GameObject{
 
 	public abstract void tick();
 
-	public abstract void render(Graphics g);	
-
-	public abstract void atacar();
+	public abstract void render(Graphics g);
 
 	public abstract void moveX();
 
@@ -55,24 +46,6 @@ public abstract class Character extends GameObject{
 		return handler.getWorld().getTile(x, y).isSolid();
 	}
 
-	public String toString()
-	{
-		return 
-				"Estadisticas del personaje tipo: " + id + "\n" +
-				"Posicion X: " + x + "\n" +
-				"Posicion Y: " + y + "\n" +
-				"Ancho: " + width + "\n" +
-				"Alto: " + height + "\n" +
-				"Archivo de imagen: " + imagen + "\n" +
-				"Velocidad en X: " + velX + "\n" +
-				"Velocidad en Y: " + velY + "\n" +
-				"Vida: " + vida + "\n" +
-				"Daño: " + daño + "\n" +
-				"Tiempo de recarga de ataque: " + tiempoRecargaAtaque + "\n" +
-				"Tiempo de recarga de ataque especial: " + tiempoRecargaEspecial
-				;
-	}
-
 	public Rectangle getBounds(double xOffset, double yOffset)
 	{
 		return (new Rectangle((int)(x + bounds.x + xOffset), 
@@ -84,43 +57,10 @@ public abstract class Character extends GameObject{
 		this.vida = vida;
 	}
 
-	public void setDaño(double daño)
-	{
-		this.daño = daño;
-	}
-
-	public void setTiempoRecargaAtaque(int tiempoRecargaAtaque)
-	{
-		this.tiempoRecargaAtaque = tiempoRecargaAtaque;
-	}
-
-	public void setTiempoRecargaEspecial(int tiemporecargaEspecial)
-	{
-		this.tiempoRecargaEspecial = tiemporecargaEspecial;
-	}
-
 	public int getVida()
 	{
 		return vida;
 	}
 
-	public double getDaño()
-	{
-		return daño;
-	}
 
-	public long getTiempoRecargaAtaque()
-	{
-		return tiempoRecargaAtaque;
-	}
-
-	public long getTiempoRecargaEspecial()
-	{
-		return tiempoRecargaEspecial;
-	}
-
-	public void setAtacando(boolean atacando)
-	{
-		this.atacando = atacando;
-	}
 }

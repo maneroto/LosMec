@@ -4,11 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
 import audios.AudioLoader;
 import images.Animation;
+import images.Assets;
 import main.GameStateManager;
 import states.State;
-import images.Assets;
 import tile.Tile;
 
 public class Player extends Character{
@@ -18,17 +19,17 @@ public class Player extends Character{
 	private Animation animation;
 	private long lastTime, timer;
 	char bulletDirection='u';
-	int weaponDamage = 20;
-	int weaponSpeed = 150;
-	String weaponSoundFile = "res\\\\sounds\\\\glock_18\\\\fire01.wav";
+	int weaponDamage;
+	int weaponSpeed;
+	HUD hud;
+	String weaponSoundFile = "res\\\\sounds\\\\glock_18\\\\fire01.wav", bulletColisionFile;
 	AudioLoader weaponSound = new AudioLoader(weaponSoundFile)
 			, reload = new AudioLoader("res\\\\sounds\\\\franchi\\\\pump.wav");
 
-	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm) {
+	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm, HUD hud) {
 		super(x, y,  id, handler);
 		// TODO Auto-generated constructor stub
 		vida = 100;
-		daño = 20;
 		width = 200;
 		height = 200;
 		this.s = s;
@@ -38,19 +39,25 @@ public class Player extends Character{
 		bounds.width = 40;
 		bounds.height = 40;
 		this.id = id;
+		weaponSpeed = 150;
 		this.gsm = gsm;
-		
-		atacando = false;
-		
-		tiempoRecargaAtaque = 300;
-		atackTimer = tiempoRecargaAtaque;
-		
+		weaponDamage = 10;
+		bulletColisionFile = "res\\\\sounds\\\\silencer\\\\fire01.wav";
 		animation = new Animation(10, Assets.p1Pistol);
+		this.hud = hud;
 	}
 
 	@Override
 	public void tick() {
 		
+		if(this.id == ID.Jugador1)
+		{
+			hud.setVidaP1(vida);
+		} 
+		else if(this.id == ID.Jugador2)
+		{
+			hud.setVidaP2(vida);
+		}
 		move();		
 		tickDirection();
 		//System.out.println(bulletDirection);
@@ -59,6 +66,7 @@ public class Player extends Character{
 		colisionItem(0, (int)velY);
 		
 		vida = (int) clamp(vida, 0, 100);
+		muerto();
 		
 	}
 	
@@ -134,45 +142,17 @@ public class Player extends Character{
 	
 	public void muerto()
 	{
-	}
-	
-	public void atacar()
-	{
-		atackTimer += System.currentTimeMillis() - lastAtackTimer;
-		lastAtackTimer = System.currentTimeMillis();
-		
-		if(atackTimer < tiempoRecargaAtaque)return;
-		
-		atacando = true;
-		
-		Rectangle cb = getBounds(0,0);
-		Rectangle ataque = new Rectangle();
-		int atqWidth = 22;
-		int atqHeight = 32;
-		ataque.width = atqWidth + 5;
-		ataque.height = atqHeight;
-		
-		if (dirAtaque == -1)
+		if(vida <= 0)
 		{
-			ataque.x = cb.x - atqWidth - 5;
-			ataque.y = cb.y + cb.height / 2 - atqHeight / 2;
+			gsm.setSate(GameStateManager.FACTORY_STATE);
 		}
-		else if(dirAtaque == 1)
-		{
-			ataque.x = cb.x + atqWidth - 10;
-			ataque.y = cb.y + cb.height / 2 - atqHeight / 2;
-		}
-		
-		atackTimer = 0;
-		
-
 	}
 	
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) x, (int) y, width, height, null);
-		g.setColor(Color.WHITE);
-		g.drawRect((int)(x+bounds.x),(int)(y+bounds.y), bounds.width, bounds.height);
+		//g.setColor(Color.WHITE);
+		//g.drawRect((int)(x+bounds.x),(int)(y+bounds.y), bounds.width, bounds.height);
 	}
 	
 	public BufferedImage getCurrentAnimationFrame()
@@ -215,6 +195,7 @@ public class Player extends Character{
 					if(((Weapon_Launcher)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{	
 						changeWeapon((Weapon)o, Assets.p1Launcher);
+						bulletColisionFile = "res\\\\sounds\\\\rocket_launcher\\\\rocket_explode_MONO.wav";
 					}
 				}
 				if(o instanceof Weapon_Minigun)
@@ -283,7 +264,7 @@ public class Player extends Character{
 			{
 				bulletYOffset = 30;
 			}
-			handler.addObject(new object.Bullet((int)(x + bounds.x + bulletXOffset), (int)(y + bounds.y + bulletYOffset), ID.Bala, handler, bulletDirection, 10));
+			handler.addObject(new object.Bullet((int)(x + bounds.x + bulletXOffset), (int)(y + bounds.y + bulletYOffset), ID.Bala, handler, bulletDirection, 10, weaponDamage, bulletColisionFile));
 			weaponSound.setLocation(weaponSoundFile);
 			weaponSound.play();
 		}

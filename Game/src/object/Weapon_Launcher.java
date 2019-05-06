@@ -7,7 +7,7 @@ import images.Assets;
 
 public class Weapon_Launcher extends Weapon{
 
-	int weaponDamage=100;
+	int weaponDamage=50;
 	int weaponSpeed=2000;
 	String weaponSoundFile = "res\\\\sounds\\\\rocket_launcher\\\\fire01.wav";
 	
