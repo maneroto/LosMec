@@ -23,8 +23,8 @@ public class Powerup_Health extends Powerup{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.health, (int) (x - handler.getCamera().getXOffset()),
-				(int) (y - handler.getCamera().getYOffset()), width, height, null);
+		g.drawImage(Assets.health, (int) x,
+				(int) y, width, height, null);
 	}
 	
 	@Override

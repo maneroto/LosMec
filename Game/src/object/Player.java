@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.concurrent.TimeUnit;
-
 import audios.AudioLoader;
 import images.Animation;
 import main.GameStateManager;
