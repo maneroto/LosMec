@@ -44,7 +44,7 @@ public class AudioLoader {
 				clip.start();
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
 				FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-				double gain = 0.50;   
+				double gain = 0.25;   
 				float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
 				gainControl.setValue(dB);
 			}

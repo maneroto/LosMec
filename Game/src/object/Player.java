@@ -61,6 +61,7 @@ public class Player extends Character{
 		colisionItem(0, (int)velY);
 		
 		vida = (int) clamp(vida, 0, 100);
+		
 	}
 	
 	public void  tickDirection() {
@@ -263,6 +264,8 @@ public class Player extends Character{
 		
 	@Override
 	public void shoot() {
+		velX = 0;
+		velY = 0;
 		timer += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
 		if(timer > weaponSpeed)
@@ -286,5 +289,17 @@ public class Player extends Character{
 			weaponSound.setLocation(weaponSoundFile);
 			weaponSound.play();
 		}
+	}
+	
+	public int getVida() {
+		return vida;
+	}
+	
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
+	
+	public int getWeaponDamage() {
+		return weaponDamage;
 	}
 }

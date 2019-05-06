@@ -3,13 +3,18 @@ package object;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ListIterator;
 
 import audios.AudioLoader;
+import images.Assets;
 import tile.Tile;
 
 public class Bullet extends Character{
+	
 	private int bulletSpeed;
 	AudioLoader bulletColision;
+	AudioLoader death;
+	
 	public Bullet(double x, double y, ID id, Handler handler, char direction, int bulletSpeed)
 	{
 		super(x,y,id, handler);
@@ -19,6 +24,7 @@ public class Bullet extends Character{
 		this.bulletSpeed = bulletSpeed;
 		bounds= new Rectangle(0, 0, width, height);
 		bulletColision = new AudioLoader("res\\\\sounds\\\\silencer\\\\fire01.wav");
+		death = new AudioLoader("res\\\\sounds\\\\death.wav");
 	}
 
 	public void tick() {
@@ -30,6 +36,8 @@ public class Bullet extends Character{
 			case 'r': velX = bulletSpeed; break;
 		}
 		move();
+		colisionItem((int)velX, 0);
+		colisionItem(0, (int)velY);
 	}
 	@Override
 	public void move()
@@ -105,6 +113,30 @@ public class Bullet extends Character{
 				handler.removeObject(this);
 			}
 			
+		}
+	}
+	
+	public void colisionItem(double xOffset, double yOffset)
+	{
+		for (GameObject o: handler.objeto)
+		{
+			if(o instanceof Player)
+			{
+				if(((Player)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+				{	
+					((Player)o).setVida(((Player)o).getVida()-((Player)o).getWeaponDamage());
+					if (((Player)o).getVida() <= 0) 
+					{
+						handler.removeObject(o);
+						death.play();
+					}
+					else 
+					{
+						handler.removeObject(this);
+						bulletColision.play();
+					}
+				}
+			}
 		}
 	}
 
