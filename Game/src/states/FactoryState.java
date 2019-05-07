@@ -44,9 +44,9 @@ public class FactoryState extends State{
 		handler.setWorld(world);
 		hud = new HUD();
 		handler.addObject(new object.Player(handler.getWorld().getSpawnP1X() * Tile.WIDTH
-				, handler.getWorld().getSpawnP1Y() * Tile.HEIGHT, ID.Jugador1, handler, this, gsm, hud));
+				, handler.getWorld().getSpawnP1Y() * Tile.HEIGHT, ID.Jugador1, handler, gsm, hud));
 		handler.addObject(new object.Player(handler.getWorld().getSpawnP2X() * Tile.WIDTH
-				, handler.getWorld().getSpawnP2Y() * Tile.HEIGHT, ID.Jugador2, handler, this, gsm, hud));
+				, handler.getWorld().getSpawnP2Y() * Tile.HEIGHT, ID.Jugador2, handler, gsm, hud));
 		handler.addObject(new object.Weapon_Assault(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(5)+1), ID.Arma, handler));
 		handler.addObject(new object.Weapon_Launcher(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(4)+6), ID.Arma, handler));
 		handler.addObject(new object.Weapon_Smg(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(3)+12), ID.Arma, handler));

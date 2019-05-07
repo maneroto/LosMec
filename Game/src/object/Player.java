@@ -1,6 +1,6 @@
 package object;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -9,13 +9,11 @@ import audios.AudioLoader;
 import images.Animation;
 import images.Assets;
 import main.GameStateManager;
-import states.State;
 import tile.Tile;
 
 public class Player extends Character{
 	
 	private GameStateManager gsm;
-	private State s;
 	private Animation animation;
 	private long lastTime, timer;
 	char bulletDirection='u';
@@ -26,13 +24,12 @@ public class Player extends Character{
 	AudioLoader weaponSound = new AudioLoader(weaponSoundFile)
 			, reload = new AudioLoader("res\\\\sounds\\\\franchi\\\\pump.wav");
 
-	public Player(double x, double y, ID id, Handler handler, State s, GameStateManager gsm, HUD hud) {
+	public Player(double x, double y, ID id, Handler handler, GameStateManager gsm, HUD hud) {
 		super(x, y,  id, handler);
 		// TODO Auto-generated constructor stub
 		vida = 100;
 		width = 200;
 		height = 200;
-		this.s = s;
 		bounds= new Rectangle(0, 0, width, height);
 		bounds.y = 80;
 		bounds.x = 80;
@@ -144,7 +141,14 @@ public class Player extends Character{
 	{
 		if(vida <= 0)
 		{
-			gsm.setSate(GameStateManager.FACTORY_STATE);
+			if (this.id == ID.Jugador1)
+			{
+				gsm.setSate(GameStateManager.PLAYER2WINS_STATE);
+			}
+			else if(this.id == ID.Jugador2)
+			{
+				gsm.setSate(GameStateManager.PLAYER1WINS_STATE);
+			}
 		}
 	}
 	
