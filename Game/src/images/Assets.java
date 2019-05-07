@@ -1,12 +1,11 @@
 package images;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 public class Assets {
 
 	public static BufferedImage floor1, bullet, wall1, assault, pistol, shotgun, launcher, minigun, smg, sniper, damage, health, speed;
-	
-	public static BufferedImage menuBG, p1Wins, p2Wins, settingsBG, howplayBG;
 	
 	public static BufferedImage[] onChangeAnim, p1Pistol, p1Assault, p1Spawn, p1Shotgun, p1Launcher, p1Minigun, p1Smg, p1Sniper;
 
@@ -83,12 +82,6 @@ public class Assets {
 		damage = ImageLoader.loadImage("/sprites/powerups/damage.png");
 		health = ImageLoader.loadImage("/sprites/powerups/health.png");
 		speed = ImageLoader.loadImage("/sprites/powerups/speed.png");
-		
-		menuBG = ImageLoader.loadImage("/sprites/backgrounds/Menu.jpg");
-		p1Wins = ImageLoader.loadImage("/sprites/backgrounds/Player1Wins.jpg");
-		p2Wins = ImageLoader.loadImage("/sprites/backgrounds/Player2Wins.jpg");
-		settingsBG = ImageLoader.loadImage("/sprites/backgrounds/Settings.jpg");
-		howplayBG = ImageLoader.loadImage("/sprites/backgrounds/HowPlay.jpg");
 	}
 	
 }
