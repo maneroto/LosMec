@@ -19,7 +19,6 @@ public class FactoryState extends State{
 	private WorldLoader world;
 	private boolean left1, right1, up1, down1,
 					left2, right2, up2, down2;
-	private AudioLoader soundtrack;
 	private HUD hud;
 
 	public FactoryState(GameStateManager gsm)
@@ -31,9 +30,6 @@ public class FactoryState extends State{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
-		soundtrack = new AudioLoader("res\\\\soundtrack\\\\soundtrack.wav");
-		soundtrack.loop();
 		
 		left1 = right1 = up1 = down1 = false;
 		left2 = right2 = up2 = down2 = false;

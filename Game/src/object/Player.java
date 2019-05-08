@@ -40,7 +40,8 @@ public class Player extends Character{
 		this.gsm = gsm;
 		weaponDamage = 10;
 		bulletColisionFile = "res\\\\sounds\\\\silencer\\\\fire01.wav";
-		animation = new Animation(10, Assets.p1Pistol);
+		if(id == ID.Jugador1) animation = new Animation(10, Assets.p1Pistol);
+		else animation = new Animation(10, Assets.p2Pistol);
 		this.hud = hud;
 	}
 
@@ -184,21 +185,24 @@ public class Player extends Character{
 				{
 					if(((Weapon_Assault)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{	
-						changeWeapon((Weapon)o, Assets.p1Assault);
+						if(id == ID.Jugador1) changeWeapon((Weapon)o, Assets.p1Assault);
+						else changeWeapon((Weapon)o, Assets.p2Assault);
 					}
 				}
 				if(o instanceof Weapon_Pistol)
 				{
 					if(((Weapon_Pistol)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{
-						changeWeapon((Weapon)o, Assets.p1Pistol);
+						if(id == ID.Jugador1) changeWeapon((Weapon)o, Assets.p1Pistol);
+						else changeWeapon((Weapon)o, Assets.p2Pistol);
 					}
 				}
 				if(o instanceof Weapon_Launcher)
 				{
 					if(((Weapon_Launcher)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{	
-						changeWeapon((Weapon)o, Assets.p1Launcher);
+						if(id == ID.Jugador1) changeWeapon((Weapon)o, Assets.p1Launcher);
+						else changeWeapon((Weapon)o, Assets.p2Launcher);
 						bulletColisionFile = "res\\\\sounds\\\\rocket_launcher\\\\rocket_explode_MONO.wav";
 					}
 				}
@@ -206,28 +210,32 @@ public class Player extends Character{
 				{
 					if(((Weapon_Minigun)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{
-						changeWeapon((Weapon)o, Assets.p1Minigun);
+						if(id == ID.Jugador1) changeWeapon((Weapon)o, Assets.p1Minigun);
+						else changeWeapon((Weapon)o, Assets.p2Minigun);
 					}
 				}
 				if(o instanceof Weapon_Shotgun)
 				{
 					if(((Weapon_Shotgun)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{	
-						changeWeapon((Weapon)o, Assets.p1Shotgun);
+						if(id == ID.Jugador1) changeWeapon((Weapon)o, Assets.p1Shotgun);
+						else changeWeapon((Weapon)o, Assets.p2Shotgun);
 					}
 				}
 				if(o instanceof Weapon_Smg)
 				{
 					if(((Weapon_Smg)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{
-						changeWeapon((Weapon)o, Assets.p1Smg);
+						if(id == ID.Jugador1) changeWeapon((Weapon)o, Assets.p1Smg);
+						else changeWeapon((Weapon)o, Assets.p2Smg);
 					}
 				}
 				if(o instanceof Weapon_Sniper)
 				{
 					if(((Weapon_Sniper)o).getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
 					{
-						changeWeapon((Weapon)o, Assets.p1Sniper);
+						if(id == ID.Jugador1) changeWeapon((Weapon)o, Assets.p1Sniper);
+						else changeWeapon((Weapon)o, Assets.p2Sniper);
 					}
 				}
 			}

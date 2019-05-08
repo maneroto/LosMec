@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import audios.AudioLoader;
 import main.GameStateManager;
 import images.Assets;
 
@@ -13,11 +14,13 @@ public class MenuState extends State{
 	private int currentChoice;
 	private String[] options = {
 		"Controles",
-		"¿Cómo jugar?",
+		"Objetivo",
 		"Jugar",
 		"Salir"
 	};
 	private Font font;
+	private AudioLoader sweep = new AudioLoader("res\\\\sounds\\\\sweep.wav");
+	private AudioLoader enter = new AudioLoader("res\\\\sounds\\\\enter.wav");
 	
 	public MenuState(GameStateManager gsm)
 	{
@@ -88,24 +91,27 @@ public class MenuState extends State{
 		if (k == KeyEvent.VK_ENTER)
 		{
 			select();
+			enter.play();
 		}
 		
-		if (k == KeyEvent.VK_UP || k == KeyEvent.VK_A)
+		if (k == KeyEvent.VK_LEFT || k == KeyEvent.VK_A || k == KeyEvent.VK_J)
 		{
 			currentChoice --;
 			if (currentChoice == -1)
 			{
 				currentChoice = options.length - 1;
 			}
+			sweep.play();
 		}
 		
-		if (k == KeyEvent.VK_DOWN || k == KeyEvent.VK_D)
+		if (k == KeyEvent.VK_RIGHT || k == KeyEvent.VK_D || k == KeyEvent.VK_L)
 		{
 			currentChoice ++;
 			if(currentChoice == options.length)
 			{
 				currentChoice = 0;
 			}
+			sweep.play();
 		}
 	}
 	

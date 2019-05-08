@@ -13,8 +13,6 @@ public class Weapon_Minigun extends Weapon{
 	
 	public Weapon_Minigun(double x, double y, ID id, Handler handler) {
 		super(x, y, id, handler);
-		width = tile.Tile.WIDTH/3;
-		height = tile.Tile.HEIGHT+tile.Tile.HEIGHT/2;
 	}
 
 	@Override

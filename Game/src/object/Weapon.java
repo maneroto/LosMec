@@ -12,6 +12,8 @@ public abstract class Weapon extends GameObject{
 	public Weapon(double x, double y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
+		width = tile.Tile.WIDTH;
+		height = tile.Tile.HEIGHT;
 	}
 
 	@Override

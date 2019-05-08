@@ -4,10 +4,13 @@ import states.State;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import audios.AudioLoader;
+
 public class GameStateManager {
 	
 	private ArrayList <State> gameStates;
 	private int currentState;
+	private AudioLoader soundtrack;
 	
 	private static int numStates = 6;
 	public static final int PLAYER1WINS_STATE = numStates -2;
@@ -20,6 +23,9 @@ public class GameStateManager {
 	
 	public GameStateManager()
 	{
+		soundtrack = new AudioLoader("res\\\\soundtrack\\\\soundtrack.wav");
+		soundtrack.loop();
+		
 		gameStates = new ArrayList <State> ();
 		
 		currentState = MENU_STATE;	

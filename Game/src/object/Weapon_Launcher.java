@@ -13,8 +13,6 @@ public class Weapon_Launcher extends Weapon{
 	
 	public Weapon_Launcher(double x, double y, ID id, Handler handler) {
 		super(x, y, id, handler);
-		width = tile.Tile.WIDTH/4;
-		height = tile.Tile.HEIGHT*2;
 	}
 
 	@Override
