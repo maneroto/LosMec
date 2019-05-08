@@ -11,8 +11,11 @@ public abstract class Tile extends GameObject{
 
 	public static Tile[]tiles = new Tile[256];
 	
-	public static Tile floor1 = new Floor1(1);
-	public static Tile wall1 = new Wall1(2);
+	public static Tile floor1 = new LimestoneFloor(1);
+	public static Tile wall1 = new MetalWall(2);
+	public static Tile crystalWall = new CrystalWall(3);
+	public static Tile mosaicFloor = new MosaicFloor(4);
+	public static Tile lavaWall = new LavaWall(5);
 	
 	protected int iden;
 	public static final int WIDTH = 48;

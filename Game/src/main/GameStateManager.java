@@ -12,13 +12,15 @@ public class GameStateManager {
 	private int currentState;
 	private AudioLoader soundtrack;
 	
-	private static int numStates = 6;
+	private static int numStates = 8;
 	public static final int PLAYER1WINS_STATE = numStates -2;
 	public static final int PLAYER2WINS_STATE = numStates -1;
 	public static final int MENU_STATE = 0;
 	public static final int HOWPLAY_STATE = 1;
 	public static final int CONTROLS_STATE = 2;
 	public static final int FACTORY_STATE = 3;
+	public static final int LABORATORY_STATE = 4;
+	public static final int LAVA_STATE = 5;
 	
 	
 	public GameStateManager()
@@ -34,6 +36,8 @@ public class GameStateManager {
 		gameStates.add(new states.ControlsState(this));
 		
 		gameStates.add(new states.FactoryState(this));
+		gameStates.add(new states.LaboratoryState(this));
+		gameStates.add(new states.LavaState(this));
 		
 		gameStates.add(new states.P1VictoryState(this));
 		gameStates.add(new states.P2VictoryState(this));

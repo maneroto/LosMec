@@ -4,10 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 import audios.AudioLoader;
-import main.GameStateManager;
 import images.Assets;
+import main.GameStateManager;
 
 public class MenuState extends State{
 	
@@ -77,7 +78,9 @@ public class MenuState extends State{
 		if (currentChoice == 2)
 		{
 			// Jugar
-			gsm.setSate(GameStateManager.FACTORY_STATE);
+			Random r = new Random();
+			int result = r.nextInt(6-3) + 3;
+			gsm.setSate(result);
 		}
 		if (currentChoice == 3)
 		{

@@ -12,7 +12,7 @@ import object.ID;
 import tile.Tile;
 import world.WorldLoader;
 
-public class FactoryState extends State{
+public class LaboratoryState extends State{
 
 	private Handler handler;
 	private WorldLoader world;
@@ -20,7 +20,7 @@ public class FactoryState extends State{
 					left2, right2, up2, down2;
 	private HUD hud;
 
-	public FactoryState(GameStateManager gsm)
+	public LaboratoryState(GameStateManager gsm)
 	{
 		this.gsm = gsm;
 		init();
@@ -35,7 +35,7 @@ public class FactoryState extends State{
 		
 		handler = new Handler();
 	
-		world = new WorldLoader("res/worlds/factoryWorld.txt");
+		world = new WorldLoader("res/worlds/laboratoryWorld.txt");
 		handler.setWorld(world);
 		hud = new HUD();
 		handler.addObject(new object.Player(handler.getWorld().getSpawnP1X() * Tile.WIDTH

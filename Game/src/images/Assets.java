@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	public static BufferedImage floor1, wall1, assault, pistol, shotgun, launcher, minigun, smg, sniper, damage, health, speed;
+	public static BufferedImage limestoneFloor, metalWall, mosaicFloor, crystalWall, lavaWall, assault, pistol, shotgun, launcher, minigun, smg, sniper, damage, health, speed;
 	
 	public static BufferedImage menuBG, p1Wins, p2Wins, howplayBG, settingsBG;
 	
@@ -113,9 +113,13 @@ public class Assets {
 		{
 			p2Sniper[i] = p2_Sniper.crop(i*300, 0, 300, 300);
 		}
+		// Cada tile tiene width de 62 y height de 60
+		limestoneFloor = floors.crop(15 * 62, 60, 62, 60);
+		metalWall = floors.crop(14 * 62, 2* 60, 62, 60);
+		mosaicFloor = floors.crop(0, 2* 60, 62, 60);
+		crystalWall = floors.crop(13 * 62, 3* 60, 62, 60);
+		lavaWall = floors.crop(3 * 62, 60, 62, 60);
 		
-		floor1 = floors.crop(0, 0, 450, 500);
-		wall1 = floors.crop(0, 500, 450, 400);
 		assault = ImageLoader.loadImage("/sprites/weapons/assault.png");
 		pistol = ImageLoader.loadImage("/sprites/weapons/pistol.png");
 		shotgun = ImageLoader.loadImage("/sprites/weapons/shotgun.png");
