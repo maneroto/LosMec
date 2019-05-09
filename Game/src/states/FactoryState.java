@@ -42,14 +42,12 @@ public class FactoryState extends State{
 				, handler.getWorld().getSpawnP1Y() * Tile.HEIGHT, ID.Jugador1, handler, gsm, hud));
 		handler.addObject(new object.Player(handler.getWorld().getSpawnP2X() * Tile.WIDTH
 				, handler.getWorld().getSpawnP2Y() * Tile.HEIGHT, ID.Jugador2, handler, gsm, hud));
-		handler.addObject(new object.Weapon_Assault(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(5)+1), ID.Arma, handler));
-		handler.addObject(new object.Weapon_Launcher(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(4)+6), ID.Arma, handler));
-		handler.addObject(new object.Weapon_Smg(tile.Tile.WIDTH*(new Random().nextInt(9)+1), tile.Tile.HEIGHT*(new Random().nextInt(3)+12), ID.Arma, handler));
-		handler.addObject(new object.Weapon_Pistol(tile.Tile.WIDTH*(new Random().nextInt(4)+10), tile.Tile.HEIGHT*(new Random().nextInt(5)+1), ID.Arma, handler));
-		handler.addObject(new object.Weapon_Shotgun(tile.Tile.WIDTH*(new Random().nextInt(9)+14), tile.Tile.HEIGHT*(new Random().nextInt(5)+1), ID.Arma, handler));
-		handler.addObject(new object.Weapon_Minigun(tile.Tile.WIDTH*(new Random().nextInt(8)+15), tile.Tile.HEIGHT*(new Random().nextInt(5)+6), ID.Arma, handler));
-		handler.addObject(new object.Weapon_Sniper(tile.Tile.WIDTH*(new Random().nextInt(10)+11), tile.Tile.HEIGHT*(new Random().nextInt(4)+11), ID.Arma, handler));
-		
+		handler.addObject(new object.Weapon_Assault(tile.Tile.WIDTH*7, tile.Tile.HEIGHT*4, ID.Arma, handler));
+		handler.addObject(new object.Weapon_Launcher(tile.Tile.WIDTH*7, tile.Tile.HEIGHT*15, ID.Arma, handler));
+		handler.addObject(new object.Weapon_Smg(tile.Tile.WIDTH*7, tile.Tile.HEIGHT*10, ID.Arma, handler));
+		handler.addObject(new object.Weapon_Shotgun(tile.Tile.WIDTH*32, tile.Tile.HEIGHT*4	, ID.Arma, handler));
+		handler.addObject(new object.Weapon_Minigun(tile.Tile.WIDTH*32, tile.Tile.HEIGHT*15, ID.Arma, handler));
+		handler.addObject(new object.Weapon_Sniper(tile.Tile.WIDTH*32, tile.Tile.HEIGHT*10, ID.Arma, handler));
 		
 		
 	}
