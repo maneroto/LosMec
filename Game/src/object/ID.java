@@ -1,9 +1,17 @@
 package object;
 
-public enum ID {
+/**
+ * Esta clase contiene los ID que se usan para saber de que tipo es un objeto
+ * @author Los mec
+ *
+ */
+public enum ID
+{
 	Solido(),
-	Jugador(),
-	Enemigo(),
-	Coleccionable(),
-	Visual()
+	Jugador1(),
+	Jugador2(),
+	Arma(),
+	PowerUp(),
+	Visual(),
+	Bala()
 }

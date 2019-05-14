@@ -4,7 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Utils {
+/**
+ * Esta clase permite leer y cargar archivos
+ * @author Los mec
+ *
+ */
+public class Utils
+{
 
 	public static String loadFileAsString(String path)
 	{

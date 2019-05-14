@@ -7,13 +7,25 @@ import java.awt.image.BufferedImage;
 import object.GameObject;
 import object.ID;
 
-public abstract class Tile extends GameObject{
+/**
+ * Un tile es un "objeto" que puede ser sólido/visual y se usa para construir nuestros mapas por medio de ID's
+ * @author Los mec
+ *
+ */
+public abstract class Tile extends GameObject
+{
 
 	public static Tile[]tiles = new Tile[256];
 	
+	public static Tile floor1 = new LimestoneFloor(1);
+	public static Tile wall1 = new MetalWall(2);
+	public static Tile crystalWall = new CrystalWall(3);
+	public static Tile mosaicFloor = new MosaicFloor(4);
+	public static Tile lavaWall = new LavaWall(5);
+	
 	protected int iden;
-	public static final int WIDTH = 64;
-	public static final int HEIGHT = 64;
+	public static final int WIDTH = 48;
+	public static final int HEIGHT = 48;
 
 	public Tile(BufferedImage imagen, int iden) {
 		super(imagen);
@@ -28,7 +40,10 @@ public abstract class Tile extends GameObject{
 		
 	}
 
-	public abstract boolean isSolid();
+	public boolean isSolid()
+	{
+		return false;
+	}
 
 	public Rectangle getBounds()
 	{

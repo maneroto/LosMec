@@ -2,7 +2,13 @@ package images;
 
 import java.awt.image.BufferedImage;
 
-public class Animation {
+/**
+ * Esta clase permite hacer las animaciones de los sprites
+ * @author Los mec
+ *
+ */
+public class Animation 
+{
 	private int speed, index;
 	private long lastTime, timer;
 	private BufferedImage[] frames;
@@ -15,7 +21,12 @@ public class Animation {
 		lastTime = System.currentTimeMillis();
 		timer = 0;
 	}
-
+	
+	public void setCurrentFrame(int index)
+	{
+		this.index=index;
+	}
+	
 	public BufferedImage getCurrentFrame()
 	{
 		return frames[index];

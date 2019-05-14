@@ -5,7 +5,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ImageLoader {
+/**
+ * Esta clase permite cargar los assets externos a nuestro videojuego
+ * @author Los mec 
+ *
+ */
+public class ImageLoader 
+{
 
 	public static BufferedImage loadImage(String path)
 	{
