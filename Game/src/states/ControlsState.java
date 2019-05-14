@@ -8,7 +8,13 @@ import java.awt.event.KeyEvent;
 import main.GameStateManager;
 import images.Assets;
 
-public class ControlsState extends State{
+/**
+ * Estado que muestra los controles
+ * @author Los mec
+ *
+ */
+public class ControlsState extends State
+{
 	
 	private String message = "Presiona enter para continuar";
 	private Font font;

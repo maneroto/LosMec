@@ -3,7 +3,13 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public abstract class GameObject {
+/**
+ * Es la clase más abstracta de nuestros objetos
+ * @author Los mec
+ *
+ */
+public abstract class GameObject 
+{
 
 	protected double x;
 	protected double y;

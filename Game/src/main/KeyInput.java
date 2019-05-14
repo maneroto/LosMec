@@ -3,7 +3,13 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyInput implements KeyListener{
+/**
+ * Esta clase lee el input del usuario y usa el patrón de diseño COMMAND
+ * @author Los mec
+ *
+ */
+public class KeyInput implements KeyListener
+{
 	
 	GameStateManager gsm;
 	

@@ -4,7 +4,13 @@ import java.awt.Graphics;
 
 import main.GameStateManager;
 
-public abstract class State {
+/**
+ * Clase abstracta de los estados, reciben un key input
+ * @author Los mec
+ *
+ */
+public abstract class State 
+{
 	
 	protected GameStateManager gsm;
 	

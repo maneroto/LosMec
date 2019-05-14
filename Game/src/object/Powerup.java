@@ -3,7 +3,13 @@ package object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public abstract class Powerup extends GameObject{
+/**
+ * Originalmente el juego iba a tener powerups, pero sentimos que estaban muy poderosos y se quedaron OBSOLETOS
+ * @author Los mec
+ *
+ */
+public abstract class Powerup extends GameObject
+{
 	
 	protected Handler handler;
 	

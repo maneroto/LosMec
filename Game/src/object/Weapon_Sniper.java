@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
-public class Weapon_Sniper extends Weapon{
+/**
+ * El sniper es un arma de cadencia baja y daño alto
+ * @author Inspiron 15 7000
+ *
+ */
+public class Weapon_Sniper extends Weapon
+{
 
 	int weaponDamage=40;
 	int weaponSpeed=1500;

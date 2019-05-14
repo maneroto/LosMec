@@ -6,11 +6,18 @@ import java.awt.Graphics;
 
 import main.GameLoop;
 
-public class HUD {
+/**
+ * Esta clase crea el HUD que son barras de vida básicamente
+ * @author Los mec
+ *
+ */
+public class HUD
+{
 	private int vidaP1, vidaP2, greenValueP1, greenValueP2;
 	private Font font;
 	
-	public HUD() {
+	public HUD() 
+	{
 		this.font = new Font("Arial", Font.BOLD, 15);
 		greenValueP1 = 255;
 		greenValueP2 = 255;

@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
-public class Weapon_Assault extends Weapon{
+/**
+ * El rifle de asalto es un arma de cadencia media y daño medio
+ * @author Los mec
+ *
+ */
+public class Weapon_Assault extends Weapon
+{
 
 	int weaponDamage=15;
 	int weaponSpeed=100;

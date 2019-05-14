@@ -5,6 +5,11 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
+/**
+ * La smg es un arma de cadencia alta y daño bajo
+ * @author Los mec
+ *
+ */
 public class Weapon_Smg extends Weapon{
 
 	int weaponDamage=10;

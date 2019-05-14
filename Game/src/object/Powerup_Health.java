@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
-public class Powerup_Health extends Powerup{
+/**
+ * Es un powerup que te regresa la vida a 100
+ * @author Los mec
+ *
+ */
+public class Powerup_Health extends Powerup
+{
 
 	int bonus = 100;
 	

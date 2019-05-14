@@ -12,7 +12,13 @@ import object.ID;
 import tile.Tile;
 import world.WorldLoader;
 
-public class LavaState extends State{
+/**
+ * Mapa lava
+ * @author Los mec
+ *
+ */
+public class LavaState extends State
+{
 
 	private Handler handler;
 	private WorldLoader world;

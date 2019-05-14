@@ -1,12 +1,17 @@
 package main;
-import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Window {
+/**
+ * Esta clase es la que crea la ventana (JFrame + canvas) de nuestro juego
+ * @author Los mec
+ *
+ */
+public class Window
+{
 	private JFrame frame;
 	private int width, height;
 	private String title;

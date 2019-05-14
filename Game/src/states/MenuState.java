@@ -10,7 +10,13 @@ import audios.AudioLoader;
 import images.Assets;
 import main.GameStateManager;
 
-public class MenuState extends State{
+/**
+ * Estado que muestra el menú prinicipal
+ * @author Los mec
+ *
+ */
+public class MenuState extends State
+{
 	
 	private int currentChoice;
 	private String[] options = {

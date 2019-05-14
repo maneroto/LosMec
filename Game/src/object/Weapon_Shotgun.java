@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
-public class Weapon_Shotgun extends Weapon{
+/**
+ * La escopeta es un arma de cadencia media y daño medio
+ * @author Los mec
+ *
+ */
+public class Weapon_Shotgun extends Weapon
+{
 
 	int weaponDamage=25;
 	int weaponSpeed=750;

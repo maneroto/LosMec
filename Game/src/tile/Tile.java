@@ -7,7 +7,13 @@ import java.awt.image.BufferedImage;
 import object.GameObject;
 import object.ID;
 
-public abstract class Tile extends GameObject{
+/**
+ * Un tile es un "objeto" que puede ser sólido/visual y se usa para construir nuestros mapas por medio de ID's
+ * @author Los mec
+ *
+ */
+public abstract class Tile extends GameObject
+{
 
 	public static Tile[]tiles = new Tile[256];
 	

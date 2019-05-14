@@ -8,7 +8,13 @@ import java.awt.event.KeyEvent;
 import main.GameStateManager;
 import images.Assets;
 
-public class P1VictoryState extends State{
+/**
+ * Estado que myestra que ganó el jugador 1
+ * @author Los mec
+ *
+ */
+public class P1VictoryState extends State
+{
 	
 	private String message = "Presiona enter para continuar";
 	private Font font;

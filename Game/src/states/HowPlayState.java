@@ -8,7 +8,13 @@ import java.awt.event.KeyEvent;
 import main.GameStateManager;
 import images.Assets;
 
-public class HowPlayState extends State{
+/**
+ * Estado que muestra el objetivo del juego
+ * @author Los mec
+ *
+ */
+public class HowPlayState extends State
+{
 	
 	private String message = "Presiona enter para continuar";
 	private Font font;

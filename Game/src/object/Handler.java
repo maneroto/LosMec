@@ -6,7 +6,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import world.WorldLoader;
 
-public class Handler {
+/**
+ * En el handler se manejan todos los objetos
+ * @author Los mec
+ *
+ */
+public class Handler
+{
 
 	public CopyOnWriteArrayList <GameObject> objeto;
 	private WorldLoader world;

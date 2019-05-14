@@ -12,7 +12,13 @@ import object.ID;
 import tile.Tile;
 import world.WorldLoader;
 
-public class LaboratoryState extends State{
+/**
+ * Mapa laboratory
+ * @author Los mec
+ *
+ */
+public class LaboratoryState extends State
+{
 
 	private Handler handler;
 	private WorldLoader world;

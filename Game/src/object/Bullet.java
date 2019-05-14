@@ -3,13 +3,17 @@ package object;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.ListIterator;
 
 import audios.AudioLoader;
-import images.Assets;
 import tile.Tile;
 
-public class Bullet extends Character{
+/**
+ * Esta clase crea la bala
+ * @author Los mec
+ *
+ */
+public class Bullet extends Character
+{
 	
 	private int bulletSpeed, bulletDamage;
 	AudioLoader bulletColision;

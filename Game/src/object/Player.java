@@ -11,7 +11,13 @@ import images.Assets;
 import main.GameStateManager;
 import tile.Tile;
 
-public class Player extends Character{
+/**
+ * Esta clase crea al jugador que puede ser J1 o J2 dependiendo de su ID
+ * @author Los mec
+ *
+ */
+public class Player extends Character
+{
 	
 	private GameStateManager gsm;
 	private Animation animation;
@@ -24,7 +30,8 @@ public class Player extends Character{
 	AudioLoader weaponSound = new AudioLoader(weaponSoundFile)
 			, reload = new AudioLoader("res\\\\sounds\\\\franchi\\\\pump.wav");
 
-	public Player(double x, double y, ID id, Handler handler, GameStateManager gsm, HUD hud) {
+	public Player(double x, double y, ID id, Handler handler, GameStateManager gsm, HUD hud) 
+	{
 		super(x, y,  id, handler);
 		// TODO Auto-generated constructor stub
 		vida = 100;
@@ -46,7 +53,8 @@ public class Player extends Character{
 	}
 
 	@Override
-	public void tick() {
+	public void tick() 
+	{
 		
 		if(this.id == ID.Jugador1)
 		{
@@ -68,7 +76,8 @@ public class Player extends Character{
 		
 	}
 	
-	public void  tickDirection() {
+	public void  tickDirection() 
+	{
 		if(velY > 0) {
 			bulletDirection = 'd';
 		}
@@ -88,7 +97,8 @@ public class Player extends Character{
 		muerto();
 	}
 
-	public void moveX(){
+	public void moveX()
+	{
 		if(velX > 0){//Moving right
 			int tx = (int) (x + velX + bounds.x + bounds.width) / Tile.WIDTH;
 			
@@ -113,7 +123,8 @@ public class Player extends Character{
 		}
 	}
 
-	public void moveY(){
+	public void moveY()
+	{
 		if(velY < 0){//Up
 			int ty = (int) (y + velY + bounds.y) / Tile.HEIGHT;
 			

@@ -5,7 +5,13 @@ import object.Handler;
 import main.GameLoop;
 import tile.Tile;
 
-public class GameCamera {
+/**
+ * Esta clase permitía controlar una cámara que seguía al jugador pero actualmente es obsoleta
+ * @author Los mec
+ *
+ */
+public class GameCamera 
+{
 	private double xOffset;
 	private double yOffset;
 	private Handler handler;

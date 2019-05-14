@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import audios.AudioLoader;
 
-public abstract class Weapon extends GameObject{
+/**
+ * Esta es una de las clases más importantes, un arma tiene cadencia, daño y sonido
+ * @author Los mec
+ *
+ */
+public abstract class Weapon extends GameObject
+{
 	
 	protected Handler handler;
 	

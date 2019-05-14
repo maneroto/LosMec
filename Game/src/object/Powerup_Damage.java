@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
-public class Powerup_Damage extends Powerup{
+/**
+ * Es un powerup que aumenta tu daño
+ * @author Los mec
+ *
+ */
+public class Powerup_Damage extends Powerup
+{
 
 	int bonus = 2;
 	

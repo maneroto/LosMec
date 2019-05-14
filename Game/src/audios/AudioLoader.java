@@ -7,6 +7,11 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * Esta clase carga los archivos de audio dentro del videojuego
+ * @author Los mec
+ *
+ */
 public class AudioLoader 
 {
 	

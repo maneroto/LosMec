@@ -1,12 +1,19 @@
 package main;
 
-import states.State;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import audios.AudioLoader;
+import states.State;
 
-public class GameStateManager {
+/**
+ * Esta clase controla los diferentes estados dentro del juego
+ * @author Los mec
+ *
+ */
+
+public class GameStateManager
+{
 	
 	private ArrayList <State> gameStates;
 	private int currentState;
@@ -21,7 +28,6 @@ public class GameStateManager {
 	public static final int FACTORY_STATE = 3;
 	public static final int LABORATORY_STATE = 4;
 	public static final int LAVA_STATE = 5;
-	
 	
 	public GameStateManager()
 	{

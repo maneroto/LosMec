@@ -2,7 +2,6 @@ package states;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 import main.GameStateManager;
 import object.GameObject;
@@ -12,7 +11,13 @@ import object.ID;
 import tile.Tile;
 import world.WorldLoader;
 
-public class FactoryState extends State{
+/**
+ * Mapa factory
+ * @author Los mec
+ *
+ */
+public class FactoryState extends State
+{
 
 	private Handler handler;
 	private WorldLoader world;

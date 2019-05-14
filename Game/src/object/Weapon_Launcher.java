@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
-public class Weapon_Launcher extends Weapon{
+/**
+ * El lanzacohetes es un arma de cadencia lenta y daño alto
+ * @author Los mec
+ *
+ */
+public class Weapon_Launcher extends Weapon
+{
 
 	int weaponDamage=50;
 	int weaponSpeed=2000;

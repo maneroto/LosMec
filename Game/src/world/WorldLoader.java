@@ -3,7 +3,13 @@ package world;
 import java.awt.Graphics;
 import tile.Tile;
 
-public class WorldLoader {
+/**
+ * Ya que se cargó el mapa, se tiene que interpretar y construir
+ * @author Los mec
+ *
+ */
+public class WorldLoader 
+{
 	private int width;
 	private int height;
 	private int spawnP1X, spawnP1Y, spawnP2X, spawnP2Y;

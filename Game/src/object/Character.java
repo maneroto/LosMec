@@ -2,7 +2,13 @@ package object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public abstract class Character extends GameObject{
+/**
+ * Es la clase abstracta de Player
+ * @author Los mec
+ *
+ */
+public abstract class Character extends GameObject
+{
 	
 	protected Handler handler;
 	protected int vida;

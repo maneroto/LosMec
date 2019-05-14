@@ -1,12 +1,17 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import images.Assets;
 
-public class GameLoop implements Runnable{
+/**
+ * Esta clase permite correr el juego dentro de un runnable
+ * @author Los mec
+ *
+ */
+public class GameLoop implements Runnable
+{
 	
 	public static int width;
 	public static int height;

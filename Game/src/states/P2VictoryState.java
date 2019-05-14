@@ -8,6 +8,11 @@ import java.awt.event.KeyEvent;
 import main.GameStateManager;
 import images.Assets;
 
+/**
+ * Estado que muestra que ganó el jugador 2
+ * @author Los mec
+ *
+ */
 public class P2VictoryState extends State{
 	
 	private String message = "Presiona enter para continuar";

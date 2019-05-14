@@ -2,7 +2,13 @@ package images;
 
 import java.awt.image.BufferedImage;
 
-public class Assets {
+/**
+ * En esta clase se cargan todos los sprites e imágenes como assets
+ * @author Los mec
+ *
+ */
+public class Assets 
+{
 
 	public static BufferedImage limestoneFloor, metalWall, mosaicFloor, crystalWall, lavaWall, assault, pistol, shotgun, launcher, minigun, smg, sniper, damage, health, speed;
 	

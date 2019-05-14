@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
-public class Weapon_Pistol extends Weapon{
+/**
+ * La pistola es un arma de cadencia media y daño bajo
+ * @author Los mec
+ *
+ */
+public class Weapon_Pistol extends Weapon
+{
 
 	int weaponDamage=10;
 	int weaponSpeed = 150;

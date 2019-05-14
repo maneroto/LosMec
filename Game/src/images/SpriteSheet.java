@@ -2,7 +2,13 @@ package images;
 
 import java.awt.image.BufferedImage;
 
-public class SpriteSheet {
+/**
+ * Esta clase permite cropear el sprite sheet
+ * @author Los mec
+ *
+ */
+public class SpriteSheet 
+{
 	
 	private BufferedImage sheet;
 

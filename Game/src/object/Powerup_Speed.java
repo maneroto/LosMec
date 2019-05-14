@@ -5,6 +5,11 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
+/**
+ * Es un powerup que aumenta tu velocidad
+ * @author Los mec
+ *
+ */
 public class Powerup_Speed extends Powerup{
 
 	int bonus = 2;

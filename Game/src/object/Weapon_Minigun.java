@@ -5,7 +5,13 @@ import java.awt.Rectangle;
 
 import images.Assets;
 
-public class Weapon_Minigun extends Weapon{
+/**
+ * La minigun es un arma de cadencia alta y daño bajo
+ * @author Los mec
+ *
+ */
+public class Weapon_Minigun extends Weapon
+{
 
 	int weaponDamage=8;
 	int weaponSpeed=15;
