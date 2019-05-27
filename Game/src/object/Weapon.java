@@ -3,8 +3,6 @@ package object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import audios.AudioLoader;
-
 /**
  * Esta es una de las clases más importantes, un arma tiene cadencia, daño y sonido
  * @author Los mec

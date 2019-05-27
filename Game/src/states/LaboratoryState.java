@@ -2,7 +2,6 @@ package states;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 import main.GameStateManager;
 import object.GameObject;
